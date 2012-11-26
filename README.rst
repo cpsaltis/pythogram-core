@@ -39,7 +39,7 @@ Pythogram-core depends on:
 
 * numpy and scipy for basic computations,
 * pillow/PIL for image IO,
-* scikits-image for feature extraction,
+* scikit-image for feature extraction,
 * and scikit-learn for machine learning 
 
 To setup all of the above in a virtualenv::
