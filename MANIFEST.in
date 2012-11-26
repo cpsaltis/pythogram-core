@@ -1,2 +1,2 @@
 include *.txt *.rst
-recursive-include docs
+recursive-include ./docs
