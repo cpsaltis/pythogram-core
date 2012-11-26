@@ -6,10 +6,7 @@ from nose.tools import assert_equal
 
 
 def test_dtm():
-    """DTM creation
-
-    Check size and values.
-    """
+    """Creates a DTM and checks size and values."""
     slope_step = 1.0
     min_value = 0.0
     size = (10, 10)

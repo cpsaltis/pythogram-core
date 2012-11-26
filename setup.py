@@ -3,7 +3,8 @@ from setuptools import setup
 from setuptools import find_packages
 
 VERSION = '0.0'
-DESCRIPTION = 'Data generation, feature extraction and classification'
+DESCRIPTION = """Command line tool for artificial data generation,
+                 feature extraction and classification"""
 LONG_DESCRIPTION = open('README.rst').read()
 
 setup(
