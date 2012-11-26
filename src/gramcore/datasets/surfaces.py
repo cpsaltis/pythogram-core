@@ -1,7 +1,7 @@
 """Generates artificial raster data that represent surfaces.
 
 These are just numpy.arrays so they can be handled with functions from
-core.operations.arrays.
+gramcore.operations.arrays.
 """
 import numpy
 from scipy.ndimage import measurements

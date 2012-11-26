@@ -1,6 +1,6 @@
-"""Tests for module core.datasets.surfaces"""
+"""Tests for module gramcore.datasets.surfaces"""
 import numpy
-from core.datasets import surfaces
+from gramcore.datasets import surfaces
 
 from nose.tools import assert_equal
 

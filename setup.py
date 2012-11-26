@@ -43,7 +43,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'gram = core.scripts.gram:gram',
+            'gram = gramcore.scripts.gram:gram',
         ],
     },
 )

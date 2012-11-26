@@ -1,8 +1,8 @@
-"""Tests for module mist.core.operations.arrays"""
+"""Tests for module gramcore.operations.arrays"""
 import os
 import numpy
 from PIL import Image
-from core.operations import arrays
+from gramcore.operations import arrays
 
 from nose.tools import assert_equal
 from nose.tools import raises

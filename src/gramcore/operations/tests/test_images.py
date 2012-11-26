@@ -1,9 +1,9 @@
-"""Tests for module mist.core.operations.images"""
+"""Tests for module gramcore.operations.images"""
 import os
 import numpy
 from PIL import Image
 from PIL import ImageStat
-from core.operations import images
+from gramcore.operations import images
 
 from nose.tools import assert_equal
 from nose.tools import raises

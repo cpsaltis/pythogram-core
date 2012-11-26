@@ -2,25 +2,25 @@
 
 operations and similar are packages so can't do:
 
->>> from core import operations
+>>> from gramcore import operations
 >>> operations.arrays.asarray
 
 The solution is either to import with as e.g.:
 
->>> from core.operations import arays as ops_arrays
+>>> from gramcore.operations import arays as ops_arrays
 
  or to include relative imports to __init__.py e.g. add import arrays to
- core/operations/__init__.py
+ gramcore/operations/__init__.py
 
 Went with the first.
 """
 import sys
 import json
 import logging
-from core.datasets import images as dt_images
-from core.datasets import surfaces as dt_surfaces
-from core.operations import arrays as ops_arrays
-from core.operations import images as ops_images
+from gramcore.datasets import images as dt_images
+from gramcore.datasets import surfaces as dt_surfaces
+from gramcore.operations import arrays as ops_arrays
+from gramcore.operations import images as ops_images
 
 
 """TODO: without the following the logger didn't work. Suggested by many e.g.
@@ -30,7 +30,7 @@ for some reason it doesn't seem to work check below the line
 print "Executing function:
 """
 logging.basicConfig(level=logging.DEBUG)
-logger = logging.getLogger('core')
+logger = logging.getLogger('gramcore')
 
 
 MAPPING = {

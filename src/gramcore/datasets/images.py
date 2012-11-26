@@ -1,7 +1,7 @@
 """Generates artificial image data.
 
 These are just PIL images so they can be handled with functions from
-core.operations.images.
+gramcore.operations.images.
 """
 from PIL import Image
 

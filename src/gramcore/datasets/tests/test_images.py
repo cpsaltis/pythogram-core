@@ -1,6 +1,6 @@
-"""Tests for module core.datasets.images"""
+"""Tests for module gramcore.datasets.images"""
 from PIL import Image
-from core.datasets import images
+from gramcore.datasets import images
 
 from nose.tools import assert_equal
 
