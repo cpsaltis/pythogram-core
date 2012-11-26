@@ -1,0 +1,8 @@
+*.py?
+
+.Python
+
+bin/
+eggs/
+include/
+lib/
