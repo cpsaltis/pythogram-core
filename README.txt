@@ -52,7 +52,7 @@ To setup all of the above in a virtualenv::
     ./bin/pip install pillow scikit-image scikit-learn
     ./bin/pip install -e git+https://cpsaltis@github.com/photogrammetry/pythogram-core.git#egg=pythogram-core
 
-Note that the order of installation steps is important.
+Note that the order of installation steps is important. Scipy 0.10.1 doesn't work with numpy 1.6.2, but 0.10.0 does. In scipy 0.11.0 this issue has been resolved.
 
 Optionally iPython can be very helpful in prototyping::
 
