@@ -14,7 +14,7 @@ def tiled(parameters):
 
     :param parameters['data']: the basic image to use as tile
     :type parameters['data']: PIL.Image
-    :param parameters['size']: the size of the image in [width, height]
+    :param parameters['size']: [width, height] of the image in pixels
     :type parameters['size']: list
 
     :return: PIL.Image
