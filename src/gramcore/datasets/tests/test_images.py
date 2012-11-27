@@ -6,19 +6,26 @@ from nose.tools import assert_equal
 
 
 def test_tiled():
-    """Create a tiled image and checks for size and color assignment."""
+    """Create a tiled image and check for size and color assignment."""
     size = [25, 25]
     img = Image.new('RGB', (10, 10))
     img.putpixel((5, 5), (0, 255, 0))
+
     parameters = {'data': [img], 'size': size}
+
     tiled = images.tiled(parameters)
+
     assert_equal(tiled.size, tuple(size))
     assert_equal(tiled.getpixel((5, 5)), (0, 255, 0))
     assert_equal(tiled.getpixel((15, 5)), (0, 255, 0))
 
 
+def test_synth_positions():
+    pass
+
+
 def test_synthetic():
-    """Create a synthetic image and checks for size and color assignment."""
+    """Create a synthetic image and check for size and color assignment."""
     background =  Image.new('RGB', (100, 50), (125, 125, 125))
     red = Image.new('RGB', (10, 5), (255, 0, 0))
     green = Image.new('RGB', (5, 5), (0, 255, 0))

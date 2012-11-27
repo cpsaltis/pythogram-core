@@ -10,6 +10,7 @@ def test_dtm():
     slope_step = 1.0
     min_value = 0.0
     size = (10, 10)
+
     parameters = {
         'slope_step': slope_step,
         'min_value': min_value,

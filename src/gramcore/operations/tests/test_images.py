@@ -47,26 +47,33 @@ def test_fromarray_L():
     """
     arr = numpy.zeros((20, 10), dtype='float')
     arr[10, 5] = 249.34
+
     parameters = {'data': [arr]}
+
     img = images.fromarray(parameters).convert('L')
+    stats = ImageStat.Stat(img)
+
     assert_equal(img.size, (10, 20))
     assert_equal(img.getpixel((5, 10)), round(arr[10, 5]))
-    stat = ImageStat.Stat(img)
-    assert_equal(stat.sum[0], round(arr.sum()))
+    assert_equal(stats.sum[0], round(arr.sum()))
 
 
 @raises(TypeError)
 def test_fromarray_RGB_fail():
     """Fail to covert array to RGB image, PIL doesn't support it"""
     arr = numpy.zeros((20, 10, 3), dtype='float')
+
     parameters = {'data': [arr]}
+
     img = images.fromarray(parameters).convert('RGB')
 
 
 def test_load_tif():
     """Load tif fixture and check pixel color"""
     parameters = {'path': 'green-dot.tif'}
+
     img = images.load(parameters)
+
     assert_equal(img.getpixel((5, 10)), (0, 255, 0))
 
 
@@ -76,13 +83,16 @@ def test_load_jpg():
     Can't check for color here, because compression changes it.
     """
     parameters = {'path': 'green-dot.jpg'}
+
     img = images.load(parameters)
 
 
 def test_load_png():
     """Load png fixture and check pixel color"""
     parameters = {'path': 'green-dot.png'}
+
     img = images.load(parameters)
+
     assert_equal(img.getpixel((5, 10)), (0, 255, 0))
 
 
@@ -91,11 +101,14 @@ def test_resize_smaller():
     img_before = Image.new('L', (10, 20))
     img_before.putpixel((0, 0), (255))
     size = (5, 10)
+
     parameters = {'data': [img_before], 'width': size[0], 'height': size[1]}
+
     img_after = images.resize(parameters)
+    arr = numpy.asarray(img_after)
+
     assert_equal(img_after.getpixel((0, 0)), (255))
     assert_equal(img_after.size, size)
-    arr = numpy.asarray(img_after)
     assert_equal(arr.sum(), 255)
 
 
@@ -104,14 +117,17 @@ def test_resize_larger():
     img_before = Image.new('L', (10, 20))
     img_before.putpixel((0, 0), (255))
     size = (20, 40)
+
     parameters = {'data': [img_before], 'width': size[0], 'height': size[1]}
+
     img_after = images.resize(parameters)
+    arr = numpy.asarray(img_after)
+
     assert_equal(img_after.getpixel((0, 0)), (255))
     assert_equal(img_after.getpixel((1, 0)), (255))
     assert_equal(img_after.getpixel((0, 1)), (255))
     assert_equal(img_after.getpixel((1, 1)), (255))
     assert_equal(img_after.size, size)
-    arr = numpy.asarray(img_after)
     assert_equal(arr.sum(), 4 * 255)
 
 
@@ -123,10 +139,13 @@ def test_rotate_noexpand():
     size = (10, 20)
     img_before = Image.new('L', size)
     img_before.putpixel((0, 0), (255))
+
     parameters = {'data': [img_before], 'angle': 45}
+
     img_after = images.rotate(parameters)
-    assert_equal(img_after.size, size)
     arr = numpy.asarray(img_after)
+
+    assert_equal(img_after.size, size)
     assert_equal(arr.sum(), 0)
 
 
@@ -138,8 +157,11 @@ def test_rotate_expand():
     size = (11, 21)
     img_before = Image.new('L', size)
     img_before.putpixel((0, 0), (255))
+
     parameters = {'data': [img_before], 'angle': 45, 'expand': 1}
+
     img_after = images.rotate(parameters)
+
     assert_equal(img_after.getpixel((1, 8)), (255))
     assert_equal(img_after.size, (23, 23))
 
@@ -148,27 +170,34 @@ def test_rotate_expand():
 def test_load_fail():
     """Fail to load file with unkown extension"""
     parameters = {'path': 'foo.bar'}
+
     img = images.load(parameters)
 
 
 def test_save_tif():
     """Save image to tif"""
     img = Image.new('RGB', (10, 20))
+
     parameters = {'path': 'green-dot.tif', 'data': [img]}
+
     assert images.save(parameters)
 
 
 def test_save_jpg():
     """Save image to jpg"""
     img = Image.new('RGB', (10, 20))
+
     parameters = {'path': 'green-dot.jpg', 'data': [img]}
+
     assert images.save(parameters)
 
 
 def test_save_png():
     """Save image to png"""
     img = Image.new('RGB', (10, 20))
+
     parameters = {'path': 'green-dot.png', 'data': [img]}
+
     assert images.save(parameters)
 
 
@@ -176,5 +205,7 @@ def test_save_png():
 def test_save_fail():
     """Fail to save file with unkown extension"""
     img = Image.new('RGB', (10, 20))
+
     parameters = {'path': 'foo.bar', 'data': [img]}
+
     images.save(parameters)
