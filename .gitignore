@@ -6,3 +6,5 @@ bin/
 eggs/
 include/
 lib/
+
+pythogram_core.egg-info
