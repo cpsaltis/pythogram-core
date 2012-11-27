@@ -23,7 +23,7 @@ To run pep8::
 
 To run pylint::
 
-   ./bin/pylint src/pythogram-core
+   ./bin/pylint src/pythogram-core/src/gramcore/
 
 
 Functions in modules are ordered alphabetically. Todos are kept as inline comments e.g.::

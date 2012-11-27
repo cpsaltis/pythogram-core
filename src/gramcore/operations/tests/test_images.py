@@ -30,8 +30,8 @@ def teardown():
     os.remove('green-dot.png')
 
 
-def test_fromarray_L():
-    """Coversion from array to L image
+def test_fromarray_grey():
+    """Coversion from array to greyscale image
 
     Checks for correct shape, value assignment and type conversion.
 
@@ -59,13 +59,13 @@ def test_fromarray_L():
 
 
 @raises(TypeError)
-def test_fromarray_RGB_fail():
+def test_fromarray_rgb_fail():
     """Fail to covert array to RGB image, PIL doesn't support it"""
     arr = numpy.zeros((20, 10, 3), dtype='float')
 
     parameters = {'data': [arr]}
 
-    img = images.fromarray(parameters).convert('RGB')
+    images.fromarray(parameters).convert('RGB')
 
 
 def test_load_tif():
@@ -84,7 +84,7 @@ def test_load_jpg():
     """
     parameters = {'path': 'green-dot.jpg'}
 
-    img = images.load(parameters)
+    images.load(parameters)
 
 
 def test_load_png():
@@ -150,10 +150,7 @@ def test_rotate_noexpand():
 
 
 def test_rotate_expand():
-    """Rotate an image with expanding
-
-    TODO: make this more generic, not tied to certain size
-    """
+    """Rotate an image with expanding"""
     size = (11, 21)
     img_before = Image.new('L', size)
     img_before.putpixel((0, 0), (255))
@@ -171,7 +168,7 @@ def test_load_fail():
     """Fail to load file with unkown extension"""
     parameters = {'path': 'foo.bar'}
 
-    img = images.load(parameters)
+    images.load(parameters)
 
 
 def test_save_tif():

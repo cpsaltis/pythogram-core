@@ -39,10 +39,10 @@ def test_add_noise():
     data = numpy.ones(shape)
     parameters = {'mean': mean, 'stddev': stddev, 'data': [data]}
     noisy = arrays.add_noise(parameters)
-    assert_equal(data.sum(), shape[0] * shape[1])
+    assert_equal(data.sum(), noisy.shape[0] * noisy.shape[1])
 
 
-def test_asarray_L():
+def test_asarray_grey():
     """Coversion from greyscale image to array
 
     It checks for correct shape and value assignment.
@@ -60,7 +60,7 @@ def test_asarray_L():
     assert_equal(arr.sum(), 255)
 
 
-def test_asarray_RGB():
+def test_asarray_rgb():
     """Coversion from RGB image to array
 
     It checks for correct shape and value assignment. An 'RGB' image of size
@@ -96,7 +96,7 @@ def test_load_npy():
 def test_load_fail():
     """Fail to load file with unkown extension"""
     parameters = {'path': 'foo.bar'}
-    arr = arrays.load(parameters)
+    arrays.load(parameters)
 
 
 def test_save_txt():
