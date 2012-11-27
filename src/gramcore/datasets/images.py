@@ -4,6 +4,7 @@ These return PIL Image objects and can be handled with functions from
 gramcore.operations.images. Since these are images, the measurement units are
 pixels with (0, 0) being the top left pixel.
 """
+import numpy
 from PIL import Image
 
 
@@ -36,13 +37,18 @@ def tiled(parameters):
 
 
 def synth_positions(parameters):
-    """Automatically calculates the best positions to place the patches in a
-    synthetic image.
+    """Calculates the best positions to place the patches in order to create
+    a synthetic image.
+
+    It places the patches in a row along the width of the background image
+    and not in a grid-like layout. This is why the background is preferable to
+    have big width. The patche are aligned to their top.
 
     Optimal positions in this case are those that maximize the buffer around
-    patches. There shouldn't be any overlap of the patches, otherwise it will
-    raise an exception. The user must provide a large enough background for
-    the all the patches to fit in. The patches are aligned to their top.
+    patches. There shouldn't be any overlap of the patches along their width.
+    Also, no patch can have height larger than the height of the background.
+    The user must provide a background large enough to fit all the patches in,
+    otherwise this will return an exception.
 
     :param parameters['data']: the background image and the patches, first in
                                list is always the background
@@ -51,29 +57,32 @@ def synth_positions(parameters):
     :return: list of positions in [[row, column], [...]] format
     """
     sizes = []
-    for img in parameters['data'][0]:
+    for img in parameters['data']:
         sizes.append(img.size)
-    bg_size = numpy.array(sizes[0])
-    sizes.remove[sizes[0]]
-    patch_sizes = numpy.array(sizes)
+    sizes = numpy.array(sizes)
+    bg_size = sizes[0, :]
+    patch_sizes = sizes[1::, :]
+    patch_nr = patch_sizes.shape[0]
 
     widths = patch_sizes[:, 0].sum()
-    heights = patch_sizes[0, :].sum()
+    max_height = patch_sizes[:, 1].max()
 
-    if bg_size[0] < widths and bg_size[1] < heights:
-        raise AttributeError('All patches must fit in the background')
+    if bg_size[0] < widths or bg_size[1] < max_height:
+        raise ValueError('Patches too big to fit in the background')
 
-    # these are all ints so the x_buffer will be int and the floor of this
-    x_buffer = (bg_size[0] - widths) / (patch_sizes.shape[0] + 1)
+    # these are all ints so the results will be int floors of these
+    width_buffer = (bg_size[0] - widths) / (patch_nr + 1)
+    height_buffer = (bg_size[1] - max_height) / 2
 
     positions = []
     current_x = 0
-    for patch in sizes:
-        x_pos = current_x + x_buffer
-        current_x += patch[0]
-        y_buffer = (bg_size[1] - patch[1]) / 2
-        y_pos = y_buffer
+    for patch in range(patch_nr):
+        x_pos = current_x + width_buffer
+        current_x += patch_sizes[patch, 0]
+        y_pos = height_buffer
         positions.append([y_pos, x_pos])
+
+    return positions
 
 
 def synthetic(parameters):
@@ -89,7 +98,8 @@ def synthetic(parameters):
 
         Pasting to positions on the boundary of the background will not result
         to an error, but the final image will not include the whole pasted
-        patch.
+        patch. Also, in case of overlaps more recent pastes will overwrite
+        those beneath them.
 
     :param parameters['data']: the background image and the patches, first in
                                list is always the background
@@ -100,36 +110,35 @@ def synthetic(parameters):
                                     calculated automatically with
                                     synth_positions()
     :type parameters['positions']: list or str
-
-    TODO: should i make it simpler. without RGBA, it seems occlusions are not
-    avoided after all
     """
-    background = parameters['data'][0]
-    if background.mode not in 'RGBA':
-        background = background.convert('RGBA')
+    images = parameters['data']
 
-    # leave background out but keep the order of patches
-    parameters['data'].remove(parameters['data'][0])
-    patches = parameters['data']
-    for patch in patches:
-        if patch.mode not in 'RGBA':
-            patch = patch.convert('RGBA')
+    # convert all input images to RGBA and replace them in th container
+    index = 0
+    for img in images:
+        if img.mode is not 'RGBA':
+            images[index] = img.convert('RGBA')
+        index += 1
 
     positions = []
     if parameters['positions'] is not 'auto':
         positions = parameters['positions']
     else:
-        positions = synth_positions({'data': patches.insert(0, background)})
+        positions = synth_positions({'data': images})
 
-    counter = 0
-    synth = background
+    synth = images.pop(0)
+    patches = images
+    index = 0
     if len(positions) is len(patches):
         for patch in patches:
             layer = Image.new('RGBA', synth.size)
-            layer.paste(patch, tuple(positions[counter]))
+            layer.paste(patch, tuple(positions[index]))
             synth = Image.composite(layer, synth, layer)
-            counter += 1
+            index += 1
     else:
-        raise AttributeError('There should be one position for each patch.')
+        if len(positions) > len(patches):
+            raise ValueError('More positions than patches')
+        else:
+            raise ValueError('Less positions than patches')
 
     return synth
