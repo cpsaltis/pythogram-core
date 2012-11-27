@@ -25,7 +25,7 @@ MAPPING = {
     'operations.images.resize': ops_images.resize,
     'operations.images.rotate': ops_images.rotate,
     'operations.images.save': ops_images.save,
-    }
+}
 
 
 def get_args(json_file):
@@ -91,7 +91,7 @@ def gram():
         # TODO: this should be made a log with logger.debug(....)
         # now it doesn't seem to work
         print "Executing function: ", parameters['task']
-        if parameters.has_key('input_index'):
+        if 'input_index' in parameters:
             data = []
             for input_index in parameters['input_index']:
                 data.append(results[input_index])
