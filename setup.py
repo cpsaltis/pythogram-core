@@ -31,8 +31,8 @@ setup(
     author_email='cpsaltis@unweb.me',
     url='http://github.com/photogrammetry/pythogram-core',
     license='MIT License',
-    packages = find_packages('src'),
-    package_dir = {'': 'src'},
+    packages=find_packages('src'),
+    package_dir={'': 'src'},
     zip_safe=False,
     install_requires=[
         'setuptools',

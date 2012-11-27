@@ -203,7 +203,7 @@ def test_save_png():
 
 @raises(TypeError)
 def test_save_fail():
-    """Fail to save file with unkown extension"""
+    """Fail to save file with unknown extension"""
     img = Image.new('RGB', (10, 20))
 
     parameters = {'path': 'foo.bar', 'data': [img]}
