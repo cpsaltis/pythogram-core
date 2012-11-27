@@ -54,7 +54,7 @@ Testing is vital to assure everything runs as expected. Pythogram-core uses nose
 
 To install nose in the virtualenv::
 
-   ./bin/pip install nose
+   ./bin/pip install nose coverage
 
 To execute the tests::
 

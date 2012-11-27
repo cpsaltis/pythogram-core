@@ -1,19 +1,4 @@
-"""Command line tool to execute a set of pythogram tasks.
-
-operations and similar are packages so can't do:
-
->>> from gramcore import operations
->>> operations.arrays.asarray
-
-The solution is either to import with as e.g.:
-
->>> from gramcore.operations import arays as ops_arrays
-
- or to include relative imports to __init__.py e.g. add import arrays to
- gramcore/operations/__init__.py
-
-Went with the first.
-"""
+"""Command line tool to execute a set of pythogram tasks."""
 import sys
 import json
 import logging
@@ -23,12 +8,6 @@ from gramcore.operations import arrays as ops_arrays
 from gramcore.operations import images as ops_images
 
 
-"""TODO: without the following the logger didn't work. Suggested by many e.g.
-http://excid3.com/blog/no-handlers-could-be-found-for-logger
-
-for some reason it doesn't seem to work check below the line
-print "Executing function:
-"""
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger('gramcore')
 
