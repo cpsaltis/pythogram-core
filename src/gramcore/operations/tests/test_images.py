@@ -33,7 +33,7 @@ def teardown():
 def test_fromarray_L():
     """Coversion from array to L image
 
-    It checks for correct shape, value assignment and type conversion.
+    Checks for correct shape, value assignment and type conversion.
 
     In general width == columns == xx' and height == rows == yy'. A 2D array
     will be converted to an image of mode '1', L' or 'F'. If the array has a

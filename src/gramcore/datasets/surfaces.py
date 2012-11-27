@@ -1,7 +1,9 @@
 """Generates artificial raster data that represent surfaces.
 
 These are just numpy.arrays so they can be handled with functions from
-gramcore.operations.arrays.
+gramcore.operations.arrays. Since these are arrays all sizes and 2D
+coordinates refer to elements of an array, with (0, 0) being the top left
+cell.
 """
 import numpy
 from scipy.ndimage import measurements

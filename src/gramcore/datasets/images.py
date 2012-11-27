@@ -1,7 +1,8 @@
 """Generates artificial image data.
 
-These are just PIL images so they can be handled with functions from
-gramcore.operations.images.
+These return PIL Image objects and can be handled with functions from
+gramcore.operations.images. Since these are images, the measurement units are
+pixels with (0, 0) being the top left pixel.
 """
 from PIL import Image
 
@@ -10,23 +11,27 @@ def tiled(parameters):
     """Creates an image by repeating the same image tile.
 
     This works regardless the size of the tile and the final image. The tile
-    is cropped at the image boundaries.
+    is cropped to the image boundaries.
 
     :param parameters['data']: the basic image to use as tile
     :type parameters['data']: PIL.Image
-    :param parameters['size']: [width, height] of the image in pixels
+    :param parameters['size']: [width, height] of the resulting image
     :type parameters['size']: list
 
     :return: PIL.Image
     """
     tile = parameters['data'][0]
     size = parameters['size']
+
     img = Image.new(tile.mode, tuple(size))
+
     w_pos = range(0, size[0], tile.size[0])
     h_pos = range(0, size[1], tile.size[1])
+
     for w_coord in w_pos:
         for h_coord in h_pos:
             img.paste(tile, (w_coord, h_coord))
+
     return img
 
 
