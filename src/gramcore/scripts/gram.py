@@ -2,10 +2,12 @@
 import sys
 import json
 import logging
-from gramcore.datasets import images as dt_images
-from gramcore.datasets import surfaces as dt_surfaces
-from gramcore.operations import arrays as ops_arrays
-from gramcore.operations import images as ops_images
+from gramcore.datasets import orthophotos
+from gramcore.datasets import polygons
+from gramcore.datasets import surfaces
+from gramcore.operations import arrays
+from gramcore.operations import images
+from gramcore.operations import vectors
 
 
 logging.basicConfig(level=logging.DEBUG)
@@ -13,18 +15,18 @@ logger = logging.getLogger('gramcore')
 
 
 MAPPING = {
-    'datasets.images.synthetic': dt_images.synthetic,
-    'datasets.images.tiled': dt_images.tiled,
-    'datasets.surfaces.dtm': dt_surfaces.dtm,
-    'operations.arrays.add_noise': ops_arrays.add_noise,
-    'operations.arrays.asarray': ops_arrays.asarray,
-    'operations.arrays.load': ops_arrays.load,
-    'operations.arrays.save': ops_arrays.save,
-    'operations.images.fromarray': ops_images.fromarray,
-    'operations.images.load': ops_images.load,
-    'operations.images.resize': ops_images.resize,
-    'operations.images.rotate': ops_images.rotate,
-    'operations.images.save': ops_images.save,
+    'datasets.images.synthetic': orthophotos.synthetic,
+    'datasets.images.tiled': orthophotos.tiled,
+    'datasets.surfaces.dtm': surfaces.dtm,
+    'operations.arrays.add_noise': arrays.add_noise,
+    'operations.arrays.asarray': arrays.asarray,
+    'operations.arrays.load': arrays.load,
+    'operations.arrays.save': arrays.save,
+    'operations.images.fromarray': images.fromarray,
+    'operations.images.load': images.load,
+    'operations.images.resize': images.resize,
+    'operations.images.rotate': images.rotate,
+    'operations.images.save': images.save,
 }
 
 

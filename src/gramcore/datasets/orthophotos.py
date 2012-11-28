@@ -1,8 +1,8 @@
-"""Generates artificial image data.
+"""Generates artificial orthophoto data.
 
-These return PIL Image objects and can be handled with functions from
-gramcore.operations.images. Since these are images, the measurement units are
-pixels with (0, 0) being the top left pixel.
+These are PIL Image objects. They can be handled with functions in
+gramcore.operations.images module. Measurement units are pixels with (0, 0)
+being the top left pixel.
 """
 import numpy
 from PIL import Image

@@ -1,6 +1,6 @@
-"""Tests for module gramcore.datasets.images"""
+"""Tests for module gramcore.datasets.orthophotos"""
 from PIL import Image
-from gramcore.datasets import images
+from gramcore.datasets import orthophotos
 
 from nose.tools import assert_equal
 from nose.tools import raises
@@ -14,7 +14,7 @@ def test_tiled():
 
     parameters = {'data': [img], 'size': size}
 
-    tiled = images.tiled(parameters)
+    tiled = orthophotos.tiled(parameters)
 
     assert_equal(tiled.size, tuple(size))
     assert_equal(tiled.getpixel((5, 5)), (0, 255, 0))
@@ -29,7 +29,7 @@ def test_synth_positions():
 
     parameters = {'data': [background, patch_1, patch_2]}
 
-    positions = images.synth_positions(parameters)
+    positions = orthophotos.synth_positions(parameters)
 
     assert_equal(positions[0][0], 5)
     assert_equal(positions[0][1], 0)
@@ -46,7 +46,7 @@ def test_positions_small_width():
 
     parameters = {'data': [background, patch_1, patch_2]}
 
-    positions = images.synth_positions(parameters)
+    positions = orthophotos.synth_positions(parameters)
 
 
 @raises(ValueError)
@@ -58,7 +58,7 @@ def test_positions_small_height():
 
     parameters = {'data': [background, patch_1, patch_2]}
 
-    positions = images.synth_positions(parameters)
+    positions = orthophotos.synth_positions(parameters)
 
 
 def test_synthetic():
@@ -83,7 +83,7 @@ def test_synthetic():
         'positions': positions
     }
 
-    synth = images.synthetic(parameters)
+    synth = orthophotos.synthetic(parameters)
 
     assert_equal(synth.size, (100, 50))
     assert_equal(synth.getpixel((5, 5)), (255, 0, 0, 255))
@@ -105,7 +105,7 @@ def test_synthetic_less_positions():
         'positions': positions
     }
 
-    images.synthetic(parameters)
+    orthophotos.synthetic(parameters)
 
 
 @raises(ValueError)
@@ -123,4 +123,4 @@ def test_synthetic_more_positions():
         'positions': positions
     }
 
-    images.synthetic(parameters)
+    orthophotos.synthetic(parameters)
