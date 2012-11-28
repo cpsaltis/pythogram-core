@@ -2,11 +2,8 @@
 import numpy
 
 
-def add_noise(parameters):
-    """Applies noise to an array.
-
-    The input array is copied to avoid altering its data when adding noise.
-    Currently it supports adding only gaussian/normal noise.
+def add_gaussian_noise(parameters):
+    """Applies gaussian noise to an array.
 
     :param parameters['data']: the input array
     :type parameters['data']: numpy.array

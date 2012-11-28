@@ -18,7 +18,7 @@ MAPPING = {
     'datasets.images.synthetic': orthophotos.synthetic,
     'datasets.images.tiled': orthophotos.tiled,
     'datasets.surfaces.dtm': surfaces.dtm,
-    'operations.arrays.add_noise': arrays.add_noise,
+    'operations.arrays.add_noise': arrays.add_gaussian_noise,
     'operations.arrays.asarray': arrays.asarray,
     'operations.arrays.load': arrays.load,
     'operations.arrays.save': arrays.save,

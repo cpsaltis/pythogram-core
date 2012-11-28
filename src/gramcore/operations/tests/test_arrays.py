@@ -22,7 +22,7 @@ def teardown():
     os.remove('array.npy')
 
 
-def test_add_noise():
+def test_add_gaussian_noise():
     """Add noise to an array
 
     Check if the initial object stays intact. Doesn't test for randomness,
@@ -38,7 +38,7 @@ def test_add_noise():
     shape = (5, 5)
     data = numpy.ones(shape)
     parameters = {'mean': mean, 'stddev': stddev, 'data': [data]}
-    noisy = arrays.add_noise(parameters)
+    noisy = arrays.add_gaussian_noise(parameters)
     assert_equal(data.sum(), noisy.shape[0] * noisy.shape[1])
 
 
