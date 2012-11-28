@@ -31,10 +31,10 @@ def test_synth_positions():
 
     positions = orthophotos.synth_positions(parameters)
 
-    assert_equal(positions[0][0], 5)
-    assert_equal(positions[0][1], 0)
-    assert_equal(positions[1][0], 5)
-    assert_equal(positions[1][1], 10)
+    assert_equal(positions[0][0], 0)
+    assert_equal(positions[0][1], 5)
+    assert_equal(positions[1][0], 10)
+    assert_equal(positions[1][1], 5)
 
 
 @raises(ValueError)
@@ -73,7 +73,7 @@ def test_synthetic():
     green = Image.new('RGB', (5, 5), (0, 255, 0))
     blue = Image.new('RGB', (20, 5), (0, 0, 255))
     positions = [
-        [5, 5],
+        [0, 0],
         [9, 5],
         [99, 20]
     ]
@@ -86,11 +86,31 @@ def test_synthetic():
     synth = orthophotos.synthetic(parameters)
 
     assert_equal(synth.size, (100, 50))
-    assert_equal(synth.getpixel((5, 5)), (255, 0, 0, 255))
+    assert_equal(synth.getpixel((0, 0)), (255, 0, 0, 255))
     # if there was no overwrite of overlapping patches, this should be:
     # assert_equal(synth.getpixel((9, 5)), (255, 255, 0, 255))
-    # but since greeen is pasted last it is:
+    # but since green is pasted last it is:
     assert_equal(synth.getpixel((9, 5)), (0, 255, 0, 255))
+
+
+def test_synthetic_auto():
+    """Create a synthetic image with automatic positions"""
+    background = Image.new('RGB', (7, 3), (125, 125, 125))
+    red = Image.new('RGB', (1, 1), (255, 0, 0))
+    green = Image.new('RGB', (1, 1), (0, 255, 0))
+    blue = Image.new('RGB', (1, 1), (0, 0, 255))
+
+    parameters = {
+        'data': [background, red, green, blue],
+        'positions': 'auto'
+    }
+
+    synth = orthophotos.synthetic(parameters)
+
+    assert_equal(synth.size, (7, 3))
+    assert_equal(synth.getpixel((1, 1)), (255, 0, 0, 255))
+    assert_equal(synth.getpixel((3, 1)), (0, 255, 0, 255))
+    assert_equal(synth.getpixel((5, 1)), (0, 0, 255, 255))
 
 
 @raises(ValueError)

@@ -54,7 +54,7 @@ def synth_positions(parameters):
                                list is always the background
     :type parameters['data']: PIL.Image
 
-    :return: list of positions in [[row, column], [...]] format
+    :return: list of integer positions in [[width, height], [...]] format
     """
     sizes = []
     for img in parameters['data']:
@@ -78,9 +78,9 @@ def synth_positions(parameters):
     current_x = 0
     for patch in range(patch_nr):
         x_pos = current_x + width_buffer
-        current_x += patch_sizes[patch, 0]
+        current_x = x_pos + patch_sizes[patch, 0]
         y_pos = height_buffer
-        positions.append([y_pos, x_pos])
+        positions.append([x_pos, y_pos])
 
     return positions
 
@@ -112,6 +112,11 @@ def synthetic(parameters):
     :type parameters['positions']: list or str
     """
     images = parameters['data']
+    positions = []
+    if parameters['positions'] is not 'auto':
+        positions = parameters['positions']
+    else:
+        positions = synth_positions({'data': images})
 
     # convert all input images to RGBA and replace them in th container
     index = 0
@@ -119,12 +124,6 @@ def synthetic(parameters):
         if img.mode is not 'RGBA':
             images[index] = img.convert('RGBA')
         index += 1
-
-    positions = []
-    if parameters['positions'] is not 'auto':
-        positions = parameters['positions']
-    else:
-        positions = synth_positions({'data': images})
 
     synth = images.pop(0)
     patches = images
