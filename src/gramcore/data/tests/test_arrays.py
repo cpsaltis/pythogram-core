@@ -1,11 +1,8 @@
-"""Tests for module gramcore.operations.arrays"""
-import os
+"""Tests for module gramcore.data.arrays"""
 import numpy
-from PIL import Image
-from gramcore.operations import arrays
+from gramcore.data import arrays
 
 from nose.tools import assert_equal
-from nose.tools import raises
 
 
 def setup():
@@ -20,26 +17,6 @@ def teardown():
     """Delete fixtures and test_save_* outputs"""
     os.remove('array.txt')
     os.remove('array.npy')
-
-
-def test_add_gaussian_noise():
-    """Add noise to an array
-
-    Check if the initial object stays intact. Doesn't test for randomness,
-    have to trust numpy in this. It would be great if something like this
-    worked, but random is random...
-
-    >>> just_noise = noisy - numpy.ones((shape))
-    >>> assert_equal(just_noise.mean(), mean)
-    >>> assert_equal(just_noise.std(), stddev)
-    """
-    mean = 10
-    stddev = 5
-    shape = (5, 5)
-    data = numpy.ones(shape)
-    parameters = {'mean': mean, 'stddev': stddev, 'data': [data]}
-    noisy = arrays.add_gaussian_noise(parameters)
-    assert_equal(data.sum(), noisy.shape[0] * noisy.shape[1])
 
 
 def test_asarray_grey():
@@ -138,3 +115,26 @@ def test_save_fail():
     arr = numpy.zeros((20, 10), dtype='float')
     parameters = {'path': 'foo.bar', 'data': [arr]}
     arrays.save(parameters)
+
+
+def test_dtm():
+    """Create a DTM and checks size and values."""
+    slope_step = 1.0
+    min_value = 0.0
+    size = (10, 10)
+
+    parameters = {
+        'slope_step': slope_step,
+        'min_value': min_value,
+        'size': size
+    }
+
+    dtm = arrays.dtm(parameters)
+
+    # this is a fixture of a row as it should be generated
+    row_values = numpy.arange(min_value, size[1], slope_step)
+
+    assert_equal(dtm.shape, size)
+    assert_equal(dtm[0, 0], min_value)
+    assert_equal(dtm[0, size[1] - 1], row_values[-1])
+    assert_equal(dtm.sum(), row_values.sum() * size[0])

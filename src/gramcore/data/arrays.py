@@ -1,24 +1,10 @@
-"""Handling numpy.array data"""
+"""Imports/exports arrays and generates artificial ones.
+
+The artificial data are DTMs and DSMs that are basically numpy arrays with
+height values. All sizes and 2D coordinates refer to array elements, with
+(0==row, 0==column) being the top left cell.
+"""
 import numpy
-
-
-def add_gaussian_noise(parameters):
-    """Applies gaussian noise to an array.
-
-    :param parameters['data']: the input array
-    :type parameters['data']: numpy.array
-    :param parameters['mean']: mean value of the distribution
-    :type parameters['mean']: float
-    :param parameters['stddev']: standard deviation of the distribution
-    :type parameters['stddev']: float
-
-    :return: numpy.array
-    """
-    data = parameters['data'][0]
-    noise = numpy.random.normal(parameters['mean'],
-                                parameters['stddev'],
-                                data.shape)
-    return noise + data
 
 
 def asarray(parameters):
@@ -88,3 +74,30 @@ def save(parameters):
         raise TypeError("Filetype not supported")
 
     return True
+
+
+def dtm(parameters):
+    """Generates a dtm with linear slope.
+
+    Slope is applied in row major order, so pixels in each row have the same
+    height value.
+
+    :param parameters['slope_step']: dH/pixel
+    :type parameters['slope_step']: float or integer
+    :param parameters['min_value']: global minimum height value
+    :type parameters['min_value']: float or integer
+    :param parameters['size']: the size of the surface in [rows, columns]
+    :type parameters['size']: list
+
+    :return: numpy.array
+    """
+    slope_step = parameters['slope_step']
+    min_value = parameters['min_value']
+    size = parameters['size']
+
+    data = numpy.zeros(size, dtype=float)
+
+    for i in range(size[0]):
+        data[i, :] = numpy.arange(min_value, size[1], slope_step)
+
+    return data

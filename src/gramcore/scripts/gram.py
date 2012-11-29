@@ -2,12 +2,9 @@
 import sys
 import json
 import logging
-from gramcore.datasets import orthophotos
-from gramcore.datasets import polygons
-from gramcore.datasets import surfaces
-from gramcore.operations import arrays
-from gramcore.operations import images
-from gramcore.operations import vectors
+from gramcore.data import images
+from gramcore.data import arrays
+from gramcore.transformations import arithmetic
 
 
 logging.basicConfig(level=logging.DEBUG)
@@ -15,18 +12,18 @@ logger = logging.getLogger('gramcore')
 
 
 MAPPING = {
-    'datasets.images.synthetic': orthophotos.synthetic,
-    'datasets.images.tiled': orthophotos.tiled,
-    'datasets.surfaces.dtm': surfaces.dtm,
-    'operations.arrays.add_noise': arrays.add_gaussian_noise,
-    'operations.arrays.asarray': arrays.asarray,
-    'operations.arrays.load': arrays.load,
-    'operations.arrays.save': arrays.save,
-    'operations.images.fromarray': images.fromarray,
-    'operations.images.load': images.load,
-    'operations.images.resize': images.resize,
-    'operations.images.rotate': images.rotate,
-    'operations.images.save': images.save,
+    'data.images.fromarray': images.fromarray,
+    'data.images.load': images.load,
+    'data.images.save': images.save,
+    # leaving this out for the moment since it isn't necessary to end users
+    #'data.images.syth_positions': data.images.synth_positions,
+    'data.images.synthetic': images.synthetic,
+    'data.images.tiled': images.tiled,
+    'data.arrays.asarray': arrays.asarray,
+    'dara.arrays.load': arrays.load,
+    'dara.arrays.save': arrays.save,
+    'data.arrays.dtm': arrays.dtm,
+    'transformations.arithmetic.add_noise': arithmetic.add_gaussian_noise,
 }
 
 

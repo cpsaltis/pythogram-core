@@ -1,39 +1,69 @@
-"""Generates artificial orthophoto data.
+"""Imports/exports images and generates artificial ones.
 
-These are PIL Image objects. They can be handled with functions in
-gramcore.operations.images module. Measurement units are pixels with (0, 0)
-being the top left pixel.
+Pythogram-core uses numpy arrays for its operations. This module contains
+functions for importing/exporting images, when necessary. It also provides
+functions for generating artificial imagery.
+
+Artificial data are PIL Image objects. Measurement units are pixels with
+(0, 0) being the top left pixel, (width, 0) the top right and (0, height)
+the bottom left.
 """
 import numpy
 from PIL import Image
 
 
-def tiled(parameters):
-    """Creates an image by repeating the same image tile.
+def fromarray(parameters):
+    """Converts a numpy array to a PIL image.
 
-    This works regardless the size of the tile and the final image. The tile
-    is cropped to the image boundaries.
-
-    :param parameters['data']: the basic image to use as tile
-    :type parameters['data']: PIL.Image
-    :param parameters['size']: [width, height] of the resulting image
-    :type parameters['size']: list
+    :param parameters['data']: the input array
+    :type parameters['data']: numpy.array
 
     :return: PIL.Image
     """
-    tile = parameters['data'][0]
-    size = parameters['size']
+    return Image.fromarray(parameters['data'][0])
 
-    img = Image.new(tile.mode, tuple(size))
 
-    w_pos = range(0, size[0], tile.size[0])
-    h_pos = range(0, size[1], tile.size[1])
+def load(parameters):
+    """Loads an image from file and returns it.
 
-    for w_coord in w_pos:
-        for h_coord in h_pos:
-            img.paste(tile, (w_coord, h_coord))
+    It supports loading from tif, jpg and png.
 
-    return img
+    :param parameters['path']: path to the file
+    :type parameters['path']: string
+
+    :return: PIL.Image
+    """
+    path = parameters['path']
+    extension = path.split('.').pop()
+
+    if extension in ['tif', 'jpg', 'png']:
+        return Image.open(path)
+    else:
+        raise TypeError("Filetype not supported")
+
+
+def save(parameters):
+    """Saves an image to a file.
+
+    It supports saving to tif, jpg and png. txt and npy files.
+
+    :param parameters['data']: image to be saved
+    :type parameters['data']: PIL.Image
+    :param parameters['path']: destination path
+    :type parameters['path']: string
+
+    :return: True or raise TypeError
+    """
+    path = parameters['path']
+    data = parameters['data'][0]
+    extension = path.split('.').pop()
+
+    if extension in ['tif', 'jpg', 'png']:
+        data.save(path)
+    else:
+        raise TypeError("Filetype not supported")
+
+    return True
 
 
 def synth_positions(parameters):
@@ -141,3 +171,31 @@ def synthetic(parameters):
             raise ValueError('Less positions than patches')
 
     return synth
+
+
+def tiled(parameters):
+    """Creates an image by repeating the same image tile.
+
+    This works regardless the size of the tile and the final image. The tile
+    is cropped to the image boundaries.
+
+    :param parameters['data']: the basic image to use as tile
+    :type parameters['data']: PIL.Image
+    :param parameters['size']: [width, height] of the resulting image
+    :type parameters['size']: list
+
+    :return: PIL.Image
+    """
+    tile = parameters['data'][0]
+    size = parameters['size']
+
+    img = Image.new(tile.mode, tuple(size))
+
+    w_pos = range(0, size[0], tile.size[0])
+    h_pos = range(0, size[1], tile.size[1])
+
+    for w_coord in w_pos:
+        for h_coord in h_pos:
+            img.paste(tile, (w_coord, h_coord))
+
+    return img
