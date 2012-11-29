@@ -55,4 +55,21 @@ def divide(parameters):
 
 
 def ndvi(parameters):
-    pass
+    """Returns the normalized difference vegetation index.
+
+    The returned values lay in [-1, 1]. For more details check:
+
+    http://en.wikipedia.org/wiki/Normalized_Difference_Vegetation_Index
+
+    :param parameters['data'][0]: red channel
+    :type parameters['data'][0]: numpy.array
+    :param parameters['data'][1]: near infrared channel
+    :type parameters['data'][1]: numpy.array
+
+    :return: numpy.array
+    """
+    red = parameters['data'][0]
+    nir = parameters['data'][1]
+
+    return (red - nir) / (red + nir)
+

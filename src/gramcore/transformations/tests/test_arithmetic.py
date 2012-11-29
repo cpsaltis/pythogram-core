@@ -54,3 +54,15 @@ def test_divide():
     result = arithmetic.divide(parameters)
 
     assert_equal(result.sum(), 2 * 10 * 10)
+
+
+def test_ndvi():
+    """Check NDVI"""
+    red = numpy.ones((10,10))
+    nir = red
+
+    parameters = {'data': [red, nir]}
+
+    result = arithmetic.ndvi(parameters)
+
+    assert_equal(result.sum(), 0)

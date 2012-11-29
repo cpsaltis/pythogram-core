@@ -77,7 +77,7 @@ def test_get_shape():
 
 
 def test_gaussian_noise():
-    """Generate gaussian noise of with dimensions
+    """Generate gaussian noise of certain dimensions
 
     Creates a large array and check only until the second decimal position
     to be sure that randomness will not cause test failure.
@@ -90,8 +90,8 @@ def test_gaussian_noise():
 
     noise = arrays.gaussian_noise(parameters)
 
-    assert_almost_equal(abs(noise.mean() - mean), 0, places=2)
-    assert_almost_equal(abs(noise.std() - stddev), 0, places=2)
+    assert_almost_equal(abs(noise.mean() - mean), 0.00, places=2)
+    assert_almost_equal(abs(noise.std() - stddev), 0.00, places=2)
 
 
 def test_load_txt():

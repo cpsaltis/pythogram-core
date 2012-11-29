@@ -22,9 +22,13 @@ MAPPING = {
     'data.arrays.asarray': arrays.asarray,
     'data.arrays.get_shape': arrays.get_shape,
     'data.arrays.gaussian_noise': arrays.gaussian_noise,
-    'dara.arrays.load': arrays.load,
-    'dara.arrays.save': arrays.save,
+    'data.arrays.load': arrays.load,
+    'data.arrays.save': arrays.save,
     'data.arrays.dtm': arrays.dtm,
+    'arithmetic.add': arithmetic.add,
+    'arithmetic.diff': arithmetic.diff,
+    'arithmetic.divide': arithmetic.divide,
+    'arithmetic.ndvi': arithmetic.ndvi,
 }
 
 
