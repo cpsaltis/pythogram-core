@@ -6,12 +6,12 @@ def add(parameters):
     """Adds arrays.
 
     It can add multiple arrays together as long as they all have the same
-    dimensions. The dtype of the sum is automatically handled by numpy.
+    dimensions. dtype of the sum is automatically handled by numpy.
 
     :param parameters['data']: the input arrays, can be more than two
     :type parameters['data']: numpy.array
 
-    :return: the sum as a numpy.array
+    :return: sum as a numpy.array
     """
     first_array = parameters['data'][0]
     result = numpy.zeros(first_array.shape)
@@ -23,7 +23,23 @@ def add(parameters):
 
 
 def diff(parameters):
-    pass
+    """Subtracts arrays.
+
+    The first array in data is always the minuend and the second is the
+    sudtrahend. dtype of the difference is automatically handled by
+    numpy.
+
+    :param parameters['data'][0]: minuend
+    :type parameters['data'][0]: numpy.array
+    :param parameters['data'][1]: subtrahend
+    :type parameters['data'][1]: numpy.array
+
+    :return: difference as a numpy.array
+    """
+    minuend = parameters['data'][0]
+    subtrahend = parameters['data'][1]
+
+    return minuend - subtrahend
 
 
 def divide(parameters):
