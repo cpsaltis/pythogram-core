@@ -4,6 +4,7 @@ import numpy
 from PIL import Image
 
 from nose.tools import assert_equal
+from nose.tools import assert_almost_equal
 from nose.tools import raises
 
 from gramcore.data import arrays
@@ -61,6 +62,36 @@ def test_asarray_rgb():
     assert_equal(arr.shape, (20, 10, 3))
     assert_equal(arr[10, 5, 0], 255)
     assert_equal(arr.sum(), 255)
+
+
+def test_get_shape():
+    """Get array shape"""
+    shape = (10, 10)
+    arr = numpy.zeros(shape)
+
+    parameters = {'data': [arr]}
+
+    result = arrays.get_shape(parameters)
+
+    assert_equal(result, shape)
+
+
+def test_gaussian_noise():
+    """Generate gaussian noise of with dimensions
+
+    Creates a large array and check only until the second decimal position
+    to be sure that randomness will not cause test failure.
+    """
+    mean = 0
+    stddev = 5
+    shape = (1000, 1000)
+
+    parameters = {'shape': shape, 'mean': mean, 'stddev': stddev}
+
+    noise = arrays.gaussian_noise(parameters)
+
+    assert_almost_equal(abs(noise.mean() - mean), 0, places=2)
+    assert_almost_equal(abs(noise.std() - stddev), 0, places=2)
 
 
 def test_load_txt():

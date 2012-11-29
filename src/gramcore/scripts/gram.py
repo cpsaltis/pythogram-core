@@ -20,10 +20,11 @@ MAPPING = {
     'data.images.synthetic': images.synthetic,
     'data.images.tiled': images.tiled,
     'data.arrays.asarray': arrays.asarray,
+    'data.arrays.get_shape': arrays.get_shape,
+    'data.arrays.gaussian_noise': arrays.gaussian_noise,
     'dara.arrays.load': arrays.load,
     'dara.arrays.save': arrays.save,
     'data.arrays.dtm': arrays.dtm,
-    'transformations.arithmetic.add_noise': arithmetic.add_gaussian_noise,
 }
 
 

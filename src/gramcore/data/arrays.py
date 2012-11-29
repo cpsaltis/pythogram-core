@@ -18,6 +18,43 @@ def asarray(parameters):
     return numpy.asarray(parameters['data'][0])
 
 
+def get_shape(parameters):
+    """Returns the shape of the input array.
+
+    :param parameters['data']: the input array, takes only one
+    :type parameters['data']: numpy.array
+
+    :return: tuple
+    """
+    return parameters['data'][0].shape
+
+
+def gaussian_noise(parameters):
+    """Generates gaussian noise.
+
+    .. warning::
+
+        If this is to be applied to images keep in mind that the values should
+        be integers and that adding noise will push some pixel values over the
+        supports color depth. e.g. In an 8 bit grey image, normally taking
+        color values in [0, 255] adding noise will make some pixels take
+        color values > 255. Scaling these pixels to become white will result
+        in more white pixels than expected.
+
+    :param parameters['data']: the input array
+    :type parameters['data']: numpy.array
+    :param parameters['mean']: mean value of the distribution
+    :type parameters['mean']: float
+    :param parameters['stddev']: standard deviation of the distribution
+    :type parameters['stddev']: float
+
+    :return: numpy.array
+    """
+    return numpy.random.normal(parameters['mean'],
+                                parameters['stddev'],
+                                parameters['shape'])
+
+
 def load(parameters):
     """Loads an array from file and returns it.
 
