@@ -1,4 +1,4 @@
-"""Handling numpy.array data"""
+"""Per pixel arithmetic operations on numpy.array data"""
 import numpy
 
 

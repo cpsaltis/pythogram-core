@@ -37,7 +37,7 @@ def gaussian_noise(parameters):
         If this is to be applied to images keep in mind that the values should
         be integers and that adding noise will push some pixel values over the
         supports color depth. e.g. In an 8 bit grey image, normally taking
-        color values in [0, 255] adding noise will make some pixels take
+        color values in [0, 255] adding noise to it will make some pixels take
         color values > 255. Scaling these pixels to become white will result
         in more white pixels than expected.
 
