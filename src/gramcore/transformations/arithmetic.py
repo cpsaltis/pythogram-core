@@ -3,6 +3,16 @@ import numpy
 
 
 def add(parameters):
+    """Adds arrays
+
+    :param parameters['data']: the input array
+    :type parameters['data']: numpy.array
+    :param parameters['mean']: mean value of the distribution
+    :type parameters['mean']: float
+    :param parameters['stddev']: standard deviation of the distribution
+    :type parameters['stddev']: float
+
+    :return: numpy.array
     pass
 
 

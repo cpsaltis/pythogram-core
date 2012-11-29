@@ -34,8 +34,11 @@ def test_asarray_grey():
     """
     img = Image.new('L', (10, 20))
     img.putpixel((5, 10), (255))
+
     parameters = {'data': [img]}
+
     arr = arrays.asarray(parameters)
+
     assert_equal(arr.shape, (20, 10))
     assert_equal(arr[10, 5], 255)
     assert_equal(arr.sum(), 255)
@@ -50,8 +53,11 @@ def test_asarray_rgb():
     """
     img = Image.new('RGB', (10, 20))
     img.putpixel((5, 10), (255, 0, 0))
+
     parameters = {'data': [img]}
+
     arr = arrays.asarray(parameters)
+
     assert_equal(arr.shape, (20, 10, 3))
     assert_equal(arr[10, 5, 0], 255)
     assert_equal(arr.sum(), 255)
@@ -106,8 +112,11 @@ def test_save_npy_3d():
     """Save 3D array to npy"""
     arr = numpy.zeros((20, 10, 3), dtype='float')
     arr[10, 5, 1] = 249.49
+
     parameters = {'path': 'array.npy', 'data': [arr]}
+
     assert arrays.save(parameters)
+
     arr = numpy.load('array.npy')
     assert_equal(arr[10, 5, 1], 249.49)
     assert_equal(arr.sum(), 249.49)
@@ -127,7 +136,7 @@ def test_split():
     data[0, 0, 1] = 1
     layer = 1
 
-    parameters = {'data': data, 'layer': layer}
+    parameters = {'data': [data], 'layer': layer}
 
     arr = arrays.split(parameters)
 

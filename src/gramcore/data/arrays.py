@@ -10,7 +10,7 @@ import numpy
 def asarray(parameters):
     """Converts a PIL image to a numpy array.
 
-    :param parameters['data']: the input image
+    :param parameters['data']: the input image, takes only one
     :type parameters['data']: PIL.Image
 
     :return: numpy.array
@@ -48,7 +48,7 @@ def save(parameters):
 
     It supports saving to txt and npy files.
 
-    :param parameters['data']: the object to be saved
+    :param parameters['data']: the object to be saved, takes only one
     :type parameters['data']: numpy.array
     :param parameters['path']: destination path
     :type parameters['path']: string
@@ -79,14 +79,14 @@ def save(parameters):
 def split(parameters):
     """Splits a 3D array and returns only the layer requested.
 
-    :param parameters['data']: the input 3D array
+    :param parameters['data']: the input 3D array, takes only one
     :type parameters['data']: numpy.array
     :param parameters['layer']: the 2D layer to return, 0 is the first one
     :type parameters['layer']: numpy.array
 
     :return: 2D numpy.array
     """
-    return parameters['data'][:, :, parameters['layer']]
+    return parameters['data'][0][:, :, parameters['layer']]
 
 
 def dtm(parameters):
