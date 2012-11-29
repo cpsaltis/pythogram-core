@@ -1,8 +1,9 @@
 """Tests for module gramcore.transformations.arithmetic"""
 import numpy
-from gramcore.transformations import arithmetic
 
 from nose.tools import assert_equal
+
+from gramcore.transformations import arithmetic
 
 
 def test_add_gaussian_noise():

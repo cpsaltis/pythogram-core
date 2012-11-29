@@ -2,6 +2,22 @@
 import numpy
 
 
+def add(parameters):
+    pass
+
+
+def diff(parameters):
+    pass
+
+
+def divide(parameters):
+    pass
+
+
+def multiply(parameters):
+    pass
+
+
 def add_gaussian_noise(parameters):
     """Applies gaussian noise to an array.
 
@@ -21,4 +37,5 @@ def add_gaussian_noise(parameters):
     return noise + data
 
 
-
+def ndvi(parameters):
+    pass

@@ -76,6 +76,10 @@ def save(parameters):
     return True
 
 
+def split(parameters):
+    pass
+
+
 def dtm(parameters):
     """Generates a dtm with linear slope.
 
@@ -101,3 +105,7 @@ def dtm(parameters):
         data[i, :] = numpy.arange(min_value, size[1], slope_step)
 
     return data
+
+
+def dsm(parameters):
+    pass
