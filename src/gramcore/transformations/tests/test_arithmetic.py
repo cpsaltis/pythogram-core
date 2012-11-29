@@ -2,8 +2,34 @@
 import numpy
 
 from nose.tools import assert_equal
+from nose.tools import raises
 
 from gramcore.transformations import arithmetic
+
+
+def test_add_two_arrays():
+    """Sum 2 arrays"""
+    one = numpy.ones((10,10))
+    two = 2 * one
+
+    parameters = {'data': [one, two]}
+
+    result = arithmetic.add(parameters)
+
+    assert_equal(result.sum(), 3 * 10 * 10)
+
+
+def test_add_three_arrays():
+    """Sum 3 arrays"""
+    one = numpy.ones((10,10))
+    two = 2 * one
+    three = 3 * one
+
+    parameters = {'data': [one, two, three]}
+
+    result = arithmetic.add(parameters)
+
+    assert_equal(result.sum(), 6 * 10 * 10)
 
 
 def test_add_gaussian_noise():

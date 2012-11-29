@@ -3,17 +3,23 @@ import numpy
 
 
 def add(parameters):
-    """Adds arrays
+    """Adds arrays.
 
-    :param parameters['data']: the input array
+    It can add multiple arrays together as long as they all have the same
+    dimensions. The dtype of the sum is automatically handled by numpy.
+
+    :param parameters['data']: the input arrays, can be more than two
     :type parameters['data']: numpy.array
-    :param parameters['mean']: mean value of the distribution
-    :type parameters['mean']: float
-    :param parameters['stddev']: standard deviation of the distribution
-    :type parameters['stddev']: float
 
-    :return: numpy.array
-    pass
+    :return: the sum as a numpy.array
+    """
+    first_array = parameters['data'][0]
+    result = numpy.zeros(first_array.shape)
+
+    for arr in parameters['data']:
+        result += arr
+
+    return result
 
 
 def diff(parameters):
