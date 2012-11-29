@@ -1,8 +1,12 @@
 """Tests for module gramcore.data.arrays"""
+import os
 import numpy
-from gramcore.data import arrays
+from PIL import Image
 
 from nose.tools import assert_equal
+from nose.tools import raises
+
+from gramcore.data import arrays
 
 
 def setup():

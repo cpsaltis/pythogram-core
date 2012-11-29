@@ -1,9 +1,13 @@
 """Tests for module gramcore.data.images"""
+import os
+import numpy
 from PIL import Image
-from gramcore.data import images
+from PIL import ImageStat
 
 from nose.tools import assert_equal
 from nose.tools import raises
+
+from gramcore.data import images
 
 
 def setup():
