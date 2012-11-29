@@ -1,8 +1,8 @@
 """Imports/exports arrays and generates artificial ones.
 
-The artificial data are DTMs and DSMs that are basically numpy arrays with
-height values. All sizes and 2D coordinates refer to array elements, with
-(0==row, 0==column) being the top left cell.
+The artificial data are DTMs and DSMs are basically numpy arrays with height
+values. All sizes and 2D coordinates refer to array elements, with (0==row,
+0==column) being the top left cell.
 """
 import numpy
 
@@ -49,7 +49,7 @@ def save(parameters):
     It supports saving to txt and npy files.
 
     :param parameters['data']: the object to be saved
-    :type parameters['data']: numpy.array or PIL.Image
+    :type parameters['data']: numpy.array
     :param parameters['path']: destination path
     :type parameters['path']: string
     :param parameters['format']: select output format, defaults to '%.2f'
@@ -77,7 +77,16 @@ def save(parameters):
 
 
 def split(parameters):
-    pass
+    """Splits a 3D array and returns only the layer requested.
+
+    :param parameters['data']: the input 3D array
+    :type parameters['data']: numpy.array
+    :param parameters['layer']: the 2D layer to return, 0 is the first one
+    :type parameters['layer']: numpy.array
+
+    :return: 2D numpy.array
+    """
+    return parameters['data'][:, :, parameters['layer']]
 
 
 def dtm(parameters):

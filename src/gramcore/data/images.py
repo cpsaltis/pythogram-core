@@ -10,6 +10,7 @@ the bottom left.
 """
 import numpy
 from PIL import Image
+from skimage import io
 
 
 def fromarray(parameters):
@@ -26,18 +27,21 @@ def fromarray(parameters):
 def load(parameters):
     """Loads an image from file and returns it.
 
-    It supports loading from tif, jpg and png.
+    It supports loading from tif, jpg and png. It uses skimage.imread()
+    to be sure the loaded image works well with scikit functions. It doesn't
+    use skimage.load(), because the path in this is relative to skimage
+    installation folder.
 
     :param parameters['path']: path to the file
     :type parameters['path']: string
 
-    :return: PIL.Image
+    :return: numpy.array
     """
     path = parameters['path']
     extension = path.split('.').pop()
 
     if extension in ['tif', 'jpg', 'png']:
-        return Image.open(path)
+        return io.imread(path)
     else:
         raise TypeError("Filetype not supported")
 
@@ -140,6 +144,8 @@ def synthetic(parameters):
                                     calculated automatically with
                                     synth_positions()
     :type parameters['positions']: list or str
+
+    :return: PIL.Image with mode 'RGBA'
     """
     images = parameters['data']
     positions = []

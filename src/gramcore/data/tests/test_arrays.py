@@ -121,6 +121,22 @@ def test_save_fail():
     arrays.save(parameters)
 
 
+def test_split():
+    """Split a 3D array and check if the correct layer is returned"""
+    data = numpy.zeros((10, 10, 3))
+    data[0, 0, 1] = 1
+    layer = 1
+
+    parameters = {'data': data, 'layer': layer}
+
+    arr = arrays.split(parameters)
+
+    assert_equal(data[0, 0, 1], 1)
+    assert_equal(data.sum(), 1)
+    assert_equal(arr[0, 0], 1)
+    assert_equal(arr.sum(), 1)
+
+
 def test_dtm():
     """Create a DTM and checks size and values."""
     slope_step = 1.0

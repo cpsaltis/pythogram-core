@@ -70,12 +70,15 @@ def test_fromarray_rgb_fail():
 
 
 def test_load_tif():
-    """Load tif fixture and check pixel color"""
+    """Load tif fixture and check pixel color
+
+    Using assert_array_equal which is the suitable solution for arrays.
+    """
     parameters = {'path': 'green-dot.tif'}
 
     img = images.load(parameters)
 
-    assert_equal(img.getpixel((5, 10)), (0, 255, 0))
+    numpy.testing.assert_array_equal(img[10, 5], [0, 255, 0])
 
 
 def test_load_jpg():
@@ -89,12 +92,15 @@ def test_load_jpg():
 
 
 def test_load_png():
-    """Load png fixture and check pixel color"""
+    """Load png fixture and check pixel color
+
+    Using assert_array_equal which is the suitable solution for arrays.
+    """
     parameters = {'path': 'green-dot.png'}
 
     img = images.load(parameters)
 
-    assert_equal(img.getpixel((5, 10)), (0, 255, 0))
+    numpy.testing.assert_array_equal(img[10, 5], [0, 255, 0])
 
 
 @raises(TypeError)
