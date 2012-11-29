@@ -11,7 +11,7 @@ def add(parameters):
     :param parameters['data']: the input arrays, can be more than two
     :type parameters['data']: numpy.array
 
-    :return: sum as a numpy.array
+    :return: numpy.array
     """
     first_array = parameters['data'][0]
     result = numpy.zeros(first_array.shape)
@@ -34,16 +34,24 @@ def diff(parameters):
     :param parameters['data'][1]: subtrahend
     :type parameters['data'][1]: numpy.array
 
-    :return: difference as a numpy.array
+    :return: numpy.array
     """
-    minuend = parameters['data'][0]
-    subtrahend = parameters['data'][1]
-
-    return minuend - subtrahend
+    return parameters['data'][0] - parameters['data'][1]
 
 
 def divide(parameters):
-    pass
+    """Divide arrays, element by element.
+
+    Arrays must have exactly the same dimensions.
+
+    :param parameters['data'][0]: numerator
+    :type parameters['data'][0]: numpy.array
+    :param parameters['data'][1]: denominator
+    :type parameters['data'][1]: numpy.array
+
+    :return: numpy.array
+    """
+    return parameters['data'][0] / parameters['data'][1]
 
 
 def ndvi(parameters):

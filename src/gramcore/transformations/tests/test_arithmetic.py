@@ -42,3 +42,15 @@ def test_diff():
     result = arithmetic.diff(parameters)
 
     assert_equal(result.sum(), 1 * 10 * 10)
+
+
+def test_divide():
+    """Divide arrays"""
+    one = numpy.ones((10,10))
+    two = 2 * one
+
+    parameters = {'data': [two, one]}
+
+    result = arithmetic.divide(parameters)
+
+    assert_equal(result.sum(), 2 * 10 * 10)
