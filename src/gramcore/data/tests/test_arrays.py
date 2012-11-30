@@ -3,9 +3,7 @@ import os
 import numpy
 from PIL import Image
 
-from nose.tools import assert_equal
-from nose.tools import assert_almost_equal
-from nose.tools import raises
+from nose.tools import assert_equal, assert_almost_equal, raises
 
 from gramcore.data import arrays
 
@@ -31,7 +29,8 @@ def test_asarray_grey():
 
     The background color is set by default to black (value == 0). In general
     width == columns == xx' and height == rows == yy'. An 'L' image of size
-    (10, 20) will become an array of shape (20, 10)
+    (10, 20) will become an array of shape (20, 10).
+
     """
     img = Image.new('L', (10, 20))
     img.putpixel((5, 10), (255))
@@ -51,6 +50,7 @@ def test_asarray_rgb():
     It checks for correct shape and value assignment. An 'RGB' image of size
     (10, 20) will become an array of shape (20, 10, 3). [:, :, 0] will be the
     red channel 1 the green and 2 the blue.
+
     """
     img = Image.new('RGB', (10, 20))
     img.putpixel((5, 10), (255, 0, 0))
@@ -81,6 +81,7 @@ def test_gaussian_noise():
 
     Creates a large array and check only until the second decimal position
     to be sure that randomness will not cause test failure.
+
     """
     mean = 0
     stddev = 5

@@ -7,6 +7,7 @@ functions for generating artificial imagery.
 Artificial data are PIL Image objects. Measurement units are pixels with
 (0, 0) being the top left pixel, (width, 0) the top right and (0, height)
 the bottom left.
+
 """
 import numpy
 from PIL import Image
@@ -20,6 +21,7 @@ def fromarray(parameters):
     :type parameters['data']: numpy.array
 
     :return: PIL.Image
+
     """
     return Image.fromarray(parameters['data'][0])
 
@@ -36,6 +38,7 @@ def load(parameters):
     :type parameters['path']: string
 
     :return: numpy.array
+
     """
     path = parameters['path']
     extension = path.split('.').pop()
@@ -57,6 +60,7 @@ def save(parameters):
     :type parameters['path']: string
 
     :return: True or raise TypeError
+
     """
     path = parameters['path']
     data = parameters['data'][0]
@@ -89,6 +93,7 @@ def synth_positions(parameters):
     :type parameters['data']: PIL.Image
 
     :return: list of integer positions in [[width, height], [...]] format
+
     """
     sizes = []
     for img in parameters['data']:
@@ -146,6 +151,7 @@ def synthetic(parameters):
     :type parameters['positions']: list or str
 
     :return: PIL.Image with mode 'RGBA'
+
     """
     images = parameters['data']
     positions = []
@@ -191,6 +197,7 @@ def tiled(parameters):
     :type parameters['size']: list
 
     :return: PIL.Image
+
     """
     tile = parameters['data'][0]
     size = parameters['size']

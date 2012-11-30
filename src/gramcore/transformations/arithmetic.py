@@ -1,4 +1,10 @@
-"""Per pixel arithmetic operations on numpy.array data"""
+"""Per pixel arithmetic operations on numpy arrays.
+
+These are mostly generic algebraic operations. However, some have meaning only
+when used on images represented as numpy arrays. An example of such a function
+is ndvi.
+
+"""
 import numpy
 
 
@@ -12,6 +18,7 @@ def add(parameters):
     :type parameters['data']: numpy.array
 
     :return: numpy.array
+
     """
     first_array = parameters['data'][0]
     result = numpy.zeros(first_array.shape)
@@ -35,6 +42,7 @@ def diff(parameters):
     :type parameters['data'][1]: numpy.array
 
     :return: numpy.array
+
     """
     return parameters['data'][0] - parameters['data'][1]
 
@@ -50,6 +58,7 @@ def divide(parameters):
     :type parameters['data'][1]: numpy.array
 
     :return: numpy.array
+
     """
     return parameters['data'][0] / parameters['data'][1]
 
@@ -67,6 +76,7 @@ def ndvi(parameters):
     :type parameters['data'][1]: numpy.array
 
     :return: numpy.array
+
     """
     red = parameters['data'][0]
     nir = parameters['data'][1]

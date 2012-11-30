@@ -1,11 +1,9 @@
 """Tests for module gramcore.data.images"""
 import os
 import numpy
-from PIL import Image
-from PIL import ImageStat
+from PIL import Image, ImageStat
 
-from nose.tools import assert_equal
-from nose.tools import raises
+from nose.tools import assert_equal, raises
 
 from gramcore.data import images
 
@@ -16,6 +14,7 @@ def setup():
     To create an image PIL requires size (width, height in pixels) and mode
     ('L', 'RGB', etc). The background color is set by default to black
     (value == 0). Color values in RGB images are stored in (R, G, B) order.
+
     """
     img = Image.new('RGB', (10, 20))
     img.putpixel((5, 10), (0, 255, 0))
@@ -45,6 +44,7 @@ def test_fromarray_grey():
         Converting from array of floats to 'L' image will reduce accuracy. 'F'
         images are usually not recognized from viewers and create problems
         with image stats. Notice below that only rounding ensures assertions.
+
     """
     arr = numpy.zeros((20, 10), dtype='float')
     arr[10, 5] = 249.34
@@ -73,6 +73,7 @@ def test_load_tif():
     """Load tif fixture and check pixel color
 
     Using assert_array_equal which is the suitable solution for arrays.
+
     """
     parameters = {'path': 'green-dot.tif'}
 
@@ -85,6 +86,7 @@ def test_load_jpg():
     """Load jpg fixture
 
     Can't check for color here, because compression changes it.
+
     """
     parameters = {'path': 'green-dot.jpg'}
 
@@ -95,6 +97,7 @@ def test_load_png():
     """Load png fixture and check pixel color
 
     Using assert_array_equal which is the suitable solution for arrays.
+
     """
     parameters = {'path': 'green-dot.png'}
 
@@ -194,6 +197,7 @@ def test_synthetic():
     The two first patches will overlap and the last will be cropped. Notice,
     that overlapping patches overwrite each other and that patches partially
     outside the background are simply cropped and not return an error.
+
     """
     background = Image.new('RGB', (100, 50), (125, 125, 125))
     red = Image.new('RGB', (10, 5), (255, 0, 0))

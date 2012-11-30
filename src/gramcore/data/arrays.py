@@ -3,6 +3,7 @@
 The artificial data are DTMs and DSMs are basically numpy arrays with height
 values. All sizes and 2D coordinates refer to array elements, with (0==row,
 0==column) being the top left cell.
+
 """
 import numpy
 
@@ -14,6 +15,7 @@ def asarray(parameters):
     :type parameters['data']: PIL.Image
 
     :return: numpy.array
+
     """
     return numpy.asarray(parameters['data'][0])
 
@@ -25,6 +27,7 @@ def get_shape(parameters):
     :type parameters['data']: numpy.array
 
     :return: tuple
+
     """
     return parameters['data'][0].shape
 
@@ -49,6 +52,7 @@ def gaussian_noise(parameters):
     :type parameters['stddev']: float
 
     :return: numpy.array
+
     """
     return numpy.random.normal(parameters['mean'],
                                 parameters['stddev'],
@@ -67,6 +71,7 @@ def load(parameters):
     :type parameters['delimiter']: string
 
     :return: numpy.array
+
     """
     path = parameters['path']
     extension = path.split('.').pop()
@@ -96,6 +101,7 @@ def save(parameters):
     :type parameters['delimiter']: string
 
     :return: True or raise TypeError
+
     """
     path = parameters['path']
     data = parameters['data'][0]
@@ -122,6 +128,7 @@ def split(parameters):
     :type parameters['layer']: numpy.array
 
     :return: 2D numpy.array
+
     """
     return parameters['data'][0][:, :, parameters['layer']]
 
@@ -140,6 +147,7 @@ def dtm(parameters):
     :type parameters['size']: list
 
     :return: numpy.array
+
     """
     slope_step = parameters['slope_step']
     min_value = parameters['min_value']

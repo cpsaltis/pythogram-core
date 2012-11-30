@@ -2,9 +2,8 @@
 import sys
 import json
 import logging
-from gramcore.data import images
-from gramcore.data import arrays
-from gramcore.transformations import arithmetic
+from gramcore.data import images, arrays
+from gramcore.transformations import arithmetic, geometric
 
 
 logging.basicConfig(level=logging.DEBUG)
@@ -36,7 +35,8 @@ def get_args(json_file):
     """Parses JSON files.
 
     It performs a series of checks to ensure everything is fine with the JSON
-    input. It is basically a helper for main().
+    input. It is basically a helper for gram().
+
     """
     try:
         json_data = open(json_file).read()
@@ -85,6 +85,7 @@ def gram():
     from the results list. It then executes the task parsing data to a new
     dictionary entry parameters['data']. Each function knows how to handle the
     provided input.
+
     """
     args = get_args(sys.argv[1])
     results = []
