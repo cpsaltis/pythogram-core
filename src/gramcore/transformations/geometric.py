@@ -1,6 +1,6 @@
 """Geometric transformations on numpy arrays.
 
-These are useful when the array to be transformed is actually an image.
+These assume that the transformed is actually an image.
 
 """
 from skimage import transform
@@ -12,6 +12,11 @@ def resize(parameters):
     This wraps `skimage.transform.resize`. For details check:
 
     http://scikit-image.org/docs/dev/api/skimage.transform.html#resize
+
+    .. warning::
+
+        The result is scaled to [0, 1]. In order to get meaningfull intensity
+        values you have to use rescale_intensity
 
     :param parameters['data'][0]: array to resize
     :type parameters['data'][0]: numpy.array
@@ -52,6 +57,13 @@ def rotate(parameters):
     This wraps `skimage.transform.rotate`. For details check:
 
     http://scikit-image.org/docs/dev/api/skimage.transform.html#rotate
+
+    .. warning::
+
+        The result is scaled to [0, 1]. In order to get meaningfull intensity
+        values you have to use rescale_intensity. Due to a bug in scikit-image
+        the resize option has exactly the opposite outcome. Won't override the
+        problem, skimage will get updated eventually.
 
     :param parameters['data'][0]: Array to rotate.
     :type parameters['data'][0]: numpy.array
