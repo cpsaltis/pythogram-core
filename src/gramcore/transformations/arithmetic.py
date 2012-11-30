@@ -82,4 +82,3 @@ def ndvi(parameters):
     nir = parameters['data'][1]
 
     return (red - nir) / (red + nir)
-

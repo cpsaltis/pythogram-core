@@ -55,8 +55,8 @@ def gaussian_noise(parameters):
 
     """
     return numpy.random.normal(parameters['mean'],
-                                parameters['stddev'],
-                                parameters['shape'])
+                               parameters['stddev'],
+                               parameters['shape'])
 
 
 def load(parameters):

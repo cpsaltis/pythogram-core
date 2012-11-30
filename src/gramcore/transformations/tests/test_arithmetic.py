@@ -2,14 +2,13 @@
 import numpy
 
 from nose.tools import assert_equal
-from nose.tools import raises
 
 from gramcore.transformations import arithmetic
 
 
 def test_add_two_arrays():
     """Sum 2 arrays"""
-    one = numpy.ones((10,10))
+    one = numpy.ones((10, 10))
     two = 2 * one
 
     parameters = {'data': [one, two]}
@@ -21,7 +20,7 @@ def test_add_two_arrays():
 
 def test_add_three_arrays():
     """Sum 3 arrays"""
-    one = numpy.ones((10,10))
+    one = numpy.ones((10, 10))
     two = 2 * one
     three = 3 * one
 
@@ -34,7 +33,7 @@ def test_add_three_arrays():
 
 def test_diff():
     """Subtract arrays"""
-    one = numpy.ones((10,10))
+    one = numpy.ones((10, 10))
     two = 2 * one
 
     parameters = {'data': [two, one]}
@@ -46,7 +45,7 @@ def test_diff():
 
 def test_divide():
     """Divide arrays"""
-    one = numpy.ones((10,10))
+    one = numpy.ones((10, 10))
     two = 2 * one
 
     parameters = {'data': [two, one]}
@@ -58,7 +57,7 @@ def test_divide():
 
 def test_ndvi():
     """Check NDVI"""
-    red = numpy.ones((10,10))
+    red = numpy.ones((10, 10))
     nir = red
 
     parameters = {'data': [red, nir]}

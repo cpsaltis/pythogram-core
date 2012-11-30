@@ -90,4 +90,3 @@ def rotate(parameters):
                             order=order,
                             mode=mode,
                             cval=cval)
-
