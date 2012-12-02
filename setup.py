@@ -2,7 +2,7 @@ import os
 from setuptools import setup
 from setuptools import find_packages
 
-VERSION = '0.1dev'
+VERSION = '0.1'
 DESCRIPTION = """Command line tool for artificial data generation,
                  feature extraction and classification"""
 LONG_DESCRIPTION = open('README.rst').read()
@@ -15,7 +15,7 @@ setup(
     classifiers=['Natural Language :: English',
                  'Topic :: Scientific/Engineering',
                  'Intended Audience :: Science/Research',
-                 'Development Status :: 1 - Planning',
+                 'Development Status :: 3 - Alpha',
                  'License :: OSI Approved :: MIT License',
                  'Operating System :: OS Independent',
                  'Programming Language :: Python',

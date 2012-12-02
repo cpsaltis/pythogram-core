@@ -14,31 +14,3 @@ Contents:
    developer_guide
    api_reference
    testing_reference
-
-   
-Refactoring
------------
-
-Internal format should be kept to numpy.array wherever possible. The new structure will be as follows:
-
-* gramcore
-   * datasets
-      * images - tile/prepare_synth, synth, noise
-      * polygons - orthogonals
-      * surfaces - dtm, dsm, noise
-      * masks - are these still relevant?
-      * changes - ??
-   * operations
-      * images - load, save, split, resize, rotate, fromarray
-      * arrays - load, save, split, asarray
-      * polygons - scale, rotate, move, export
-   * features, or just features without the rest
-      * edges - prewitt, sobel, canny
-      * thresholding - ??
-      * points - harris, hog
-      * statistics - min, max, mean, average etc
-      * morphology - grey_ersosion etc
-      * indexes - ndvi
-      * selection ???
-   * classification
-      * svm
