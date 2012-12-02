@@ -61,3 +61,19 @@ Optionally iPython can be very helpful in prototyping::
 If you plan to contribute to Pythogram you'll also need::
 
     ./bin/pip install pep8 sphinx pylint nose coverage
+
+
+Changelog
+---------
+
+`0.1 (2012-12-02) [cpsaltis]`
+
+This is the initial version of pythogram-core. It supports:
+
+* I/O of images and arrays,
+* generation of artificial tiled and syntethic images,
+* generation of artificial DTMs and DSMs,
+* basic arithmetic operations on arrays,
+* NDVI calculation,
+* skimage rotate and resize 
+* command line script, called gram, parsing an input JSON to execute complex workflows
