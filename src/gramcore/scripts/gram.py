@@ -24,6 +24,7 @@ MAPPING = {
     'data.arrays.load': arrays.load,
     'data.arrays.save': arrays.save,
     'data.arrays.dtm': arrays.dtm,
+    'data.arrays.dsm': arrays.dsm,
     'arithmetic.add': arithmetic.add,
     'arithmetic.diff': arithmetic.diff,
     'arithmetic.divide': arithmetic.divide,

@@ -6,6 +6,7 @@ values. All sizes and 2D coordinates refer to array elements, with (0==row,
 
 """
 import numpy
+from scipy.ndimage import measurements
 
 
 def asarray(parameters):
@@ -134,12 +135,12 @@ def split(parameters):
 
 
 def dtm(parameters):
-    """Generates a dtm with linear slope.
+    """Generates a DTM with linear slope.
 
     Slope is applied in row major order, so pixels in each row have the same
     height value.
 
-    :param parameters['slope_step']: dH/pixel
+    :param parameters['slope_step']: height difference for neighbouring cells
     :type parameters['slope_step']: float or integer
     :param parameters['min_value']: global minimum height value
     :type parameters['min_value']: float or integer
@@ -162,4 +163,49 @@ def dtm(parameters):
 
 
 def dsm(parameters):
-    pass
+    """Generates a DSM by elevating groups a cells by certain height.
+
+    This requires an input array, the DTM, and a mask. The mask designates
+    which cells of the DTM should be elevated in order to produce the DSM.
+    Basically, the mask shows in which cells there are features with
+    significant height, e.g. trees, buildings etc.
+
+    The tricky part it to account for DTM slope when elevating a group of
+    cells. If you simply add some height to the initial DTM then the features
+    will be elevated parallel to the ground. Especially in the case of
+    buildings, their roof is horizontal, regardless of the underlying DTM
+    slope.
+
+    To account for this, the algorithm initially labels the mask. As a result
+    you get groups of cells which should all be elevated to the same height.
+    Next, it finds the maximum height value of underlying DTM for each blob.
+    Finally, it assigns `max_blob_height + delta_height` to each blob cell.
+
+    :param parameters['data'][0]: the base DTM
+    :type parameters['data'][0]: numpy.array
+    :param parameters['data'][1]: the mask of cells to elevate
+    :type parameters['data'][1]: numpy.array with boolean/binary values
+    :param parameters['delta_height']: single cell elevation value
+    :type parameters['delta_height']: float or integer
+
+    :return: numpy.array
+
+    """
+    dtm = parameters['data'][0]
+    mask = parameters['data'][1]
+    delta_height = parameters['delta_height']
+
+    # label and find the max height of each blob
+    labels, count = measurements.label(mask)
+    max_heights = measurements.maximum(dtm,
+                                       labels=labels,
+                                       index=range(1, count + 1))
+
+    # assign the max height at each blob cell, required to copy so it won't
+    # change the initial dtm values
+    dsm = dtm.copy()
+    for blob_id in range(1, count + 1):
+        dsm[numpy.where(labels == blob_id)] = max_heights[blob_id - 1] +\
+                                              delta_height
+
+    return dsm

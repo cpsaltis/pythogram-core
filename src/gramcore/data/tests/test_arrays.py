@@ -179,7 +179,7 @@ def test_split():
 
 
 def test_dtm():
-    """Create a DTM and checks size and values."""
+    """Create a DTM and check size and values."""
     slope_step = 1.0
     min_value = 0.0
     size = (10, 10)
@@ -199,3 +199,32 @@ def test_dtm():
     assert_equal(dtm[0, 0], min_value)
     assert_equal(dtm[0, size[1] - 1], row_values[-1])
     assert_equal(dtm.sum(), row_values.sum() * size[0])
+
+
+def test_dsm():
+    """Create a DSM and check size and values."""
+    dtm = numpy.arange(100)
+    dtm.shape = (10, 10)
+    mask = numpy.zeros((10, 10))
+    mask[2:5, 2:5] = 1
+    mask[6:9, 6:9] = 1
+    delta_height = 1000
+
+    parameters = {
+        'data': [dtm, mask],
+        'delta_height': delta_height
+    }
+
+    dsm = arrays.dsm(parameters)
+
+    assert_equal(dsm.shape, dtm.shape)
+
+    assert numpy.all(dsm[2:5, 2:5] == 1044)
+    assert numpy.all(dsm[6:9, 6:9] == 1088)
+    # make sure the initial array was not overwritten
+    temp = numpy.arange(100)
+    temp.shape = (10, 10)
+    numpy.testing.assert_array_equal(dtm, temp)
+    # make sure no other values where changed
+    assert_equal(dsm.sum(), 23148)
+
