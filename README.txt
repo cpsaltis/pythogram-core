@@ -1,9 +1,9 @@
 pythogram-core
 ==============
 
-:Version: 0.0
+:Version: 0.1
 :Author: Christodoulos Psaltis (cpsaltis)
-:Source: https://github.com/photogrammetry/pythogram-core
+:Source: https://github.com/cpsaltis/pythogram-core
 :License: MIT
 :Keywords: python, photogrammetry, artificial data, feature extraction, machine learning, classification
 
@@ -50,7 +50,7 @@ To setup all of the above in a virtualenv::
     ./bin/pip install scipy
     ./bin/pip install cython
     ./bin/pip install pillow scikit-image scikit-learn
-    ./bin/pip install -e git+https://cpsaltis@github.com/photogrammetry/pythogram-core.git#egg=pythogram-core
+    ./bin/pip install -e git+http://github.com/cpsaltis/pythogram-core.git#egg=pythogram-core
 
 Note that the order of installation steps is important. Scipy 0.10.1 doesn't work with numpy 1.6.2, but 0.10.0 does, see README.txt in http://sourceforge.net/projects/scipy/files/scipy/0.10.1/. In scipy 0.11.0 this issue has been resolved.
 
