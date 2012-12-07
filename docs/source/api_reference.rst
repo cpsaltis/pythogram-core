@@ -3,41 +3,41 @@ API reference
 
 Here you can find detailed documentation on all available modules.
 
-:mod:`gramcore.datasets.images`
--------------------------------
+:mod:`gramcore.data.arrays`
+---------------------------
 
-.. automodule:: gramcore.datasets.images
+.. automodule:: gramcore.data.arrays
    :members:
    :undoc-members:
 
 
-:mod:`gramcore.datasets.polygons`
----------------------------------
+:mod:`gramcore.data.images`
+---------------------------
 
-.. automodule:: gramcore.datasets.polygons
+.. automodule:: gramcore.data.images
    :members:
    :undoc-members:
 
 
-:mod:`gramcore.datasets.surfaces`
----------------------------------
+:mod:`gramcore.transformations.arithmetic`
+------------------------------------------
 
-.. automodule:: gramcore.datasets.surfaces
+.. automodule:: gramcore.transformations.arithmetic
    :members:
    :undoc-members:
 
 
-:mod:`gramcore.operations.arrays`
----------------------------------
+:mod:`gramcore.transformations.geometric`
+-----------------------------------------
 
-.. automodule:: gramcore.operations.arrays
+.. automodule:: gramcore.transformations.geometric
    :members:
    :undoc-members:
 
 
-:mod:`gramcore.operations.images`
----------------------------------
+:mod:`gramcore.scripts.gram`
+----------------------------
 
-.. automodule:: gramcore.operations.images
+.. automodule:: gramcore.scripts.gram
    :members:
    :undoc-members:

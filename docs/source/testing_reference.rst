@@ -1,41 +1,43 @@
 Testing reference
-*****************
+=================
 
 Here you can find detailed documentation on all testing modules.
 
-:mod:`gramcore.datasets.tests.test_images`
-================================================
+:mod:`gramcore.data.tests.arrays`
+---------------------------------
 
-.. automodule:: gramcore.datasets.tests.test_images
+.. automodule:: gramcore.data.tests.test_arrays
    :members:
    :undoc-members:
 
 
-:mod:`gramcore.datasets.tests.test_polygons`
-==================================================
+:mod:`gramcore.data.tests.images`
+---------------------------------
 
-.. automodule:: gramcore.datasets.tests.test_polygons
+.. automodule:: gramcore.data.test.test_images
    :members:
    :undoc-members:
 
 
-:mod:`gramcore.datasets.tests.test_surfaces`
-==================================================
+:mod:`gramcore.transformations.tests.arithmetic`
+-------------------------------------------------
 
-.. automodule:: gramcore.datasets.tests.test_surfaces
+.. automodule:: gramcore.transformations.tests.test_arithmetic
    :members:
    :undoc-members:
 
 
-:mod:`gramcore.operations.tests.test_arrays`
-==================================================
-.. automodule:: gramcore.operations.tests.test_arrays
+:mod:`gramcore.transformations.tests.geometric`
+-----------------------------------------------
+
+.. automodule:: gramcore.transformations.tests.test_geometric
    :members:
    :undoc-members:
 
 
-:mod:`gramcore.operations.tests.test_images`
-==================================================
-.. automodule:: gramcore.operations.tests.test_images
+:mod:`gramcore.scripts.tests.gram`
+----------------------------------
+
+.. automodule:: gramcore.scripts.tests.test_gram
    :members:
    :undoc-members:
