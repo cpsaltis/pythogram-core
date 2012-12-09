@@ -4,7 +4,7 @@ API reference
 Here you can find detailed documentation on all available modules.
 
 :mod:`gramcore.data.arrays`
----------------------------
+------------------------------------------
 
 .. automodule:: gramcore.data.arrays
    :members:
@@ -12,9 +12,41 @@ Here you can find detailed documentation on all available modules.
 
 
 :mod:`gramcore.data.images`
----------------------------
+------------------------------------------
 
 .. automodule:: gramcore.data.images
+   :members:
+   :undoc-members:
+
+
+:mod:`gramcore.filters.edges`
+------------------------------------------
+
+.. automodule:: gramcore.filters.edges
+   :members:
+   :undoc-members:
+
+
+:mod:`gramcore.filters.morphology`
+------------------------------------------
+
+.. automodule:: gramcore.filters.morphology
+   :members:
+   :undoc-members:
+
+
+:mod:`gramcore.filters.statistics`
+------------------------------------------
+
+.. automodule:: gramcore.filters.statistics
+   :members:
+   :undoc-members:
+
+
+:mod:`gramcore.filters.thresholds`
+------------------------------------------
+
+.. automodule:: gramcore.filters.thresholds
    :members:
    :undoc-members:
 
@@ -28,7 +60,7 @@ Here you can find detailed documentation on all available modules.
 
 
 :mod:`gramcore.transformations.geometric`
------------------------------------------
+------------------------------------------
 
 .. automodule:: gramcore.transformations.geometric
    :members:
@@ -36,7 +68,7 @@ Here you can find detailed documentation on all available modules.
 
 
 :mod:`gramcore.scripts.gram`
-----------------------------
+------------------------------------------
 
 .. automodule:: gramcore.scripts.gram
    :members:
