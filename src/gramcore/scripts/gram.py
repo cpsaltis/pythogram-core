@@ -3,6 +3,7 @@ import sys
 import json
 import logging
 from gramcore.data import images, arrays
+from gramcore.filters import edges, statistics
 from gramcore.transformations import arithmetic, geometric
 
 
@@ -26,6 +27,14 @@ MAPPING = {
     'arrays.split': arrays.split,
     'arrays.dtm': arrays.dtm,
     'arrays.dsm': arrays.dsm,
+    'edges.canny': edges.canny,
+    'edges.prewitt': edges.prewitt,
+    'edges.sobel': edges.sobel,
+    'statistics.minimum': statistics.minimum,
+    'statistics.maximum': statistics.maximum,
+    'statistics.median': statistics.median,
+    'statistics.average': statistics.average,
+    'statistics.stddev': statistics.stddev,
     'arithmetic.add': arithmetic.add,
     'arithmetic.diff': arithmetic.diff,
     'arithmetic.divide': arithmetic.divide,
