@@ -32,7 +32,7 @@ def setup():
 
 def teardown():
     """Delete fixture"""
-    #os.remove('white-square.tif')
+    os.remove('white-square.tif')
 
 
 def test_canny():
@@ -56,7 +56,6 @@ def test_canny():
     #result *= 255
     #io.imsave('result.tif', result)
     assert_equal(result.sum(), 50)
-
 
 
 def test_prewitt():
