@@ -1,7 +1,6 @@
 """Tests for module gramcore.filters.edges"""
 import os
 import numpy
-from PIL import Image, ImageDraw
 
 from nose.tools import assert_equal
 
@@ -13,26 +12,19 @@ from gramcore.filters import edges
 def setup():
     """Create image fixture
 
-    The background color is set by default to black (value == 0).
-
-    .. note::
-
-        Although the rectangle should be 10x10 in reality it returns an 11x11.
-        If the image is read with io.imread, then the colored pixels and their
-        neighbours can be accessed with arr[9:22, 4:17].
+    It creates a 20x40 image with black background and paints an 11x11 white
+    rectangle inside. Choose odd dimensions for the filters to work more
+    predictively.
 
     """
-    img = Image.new('L', (20, 40))
-    draw = ImageDraw.Draw(img)
-    draw.rectangle([(5, 10), (15, 20)], fill=255)
-    img.save('white-square.tif')
-
-    del draw
+    img = numpy.zeros((20, 40))
+    img[5:16, 15:26] = 255
+    io.imsave('white-square.tif', img.astype('uint8'))
 
 
 def teardown():
     """Delete fixture"""
-    os.remove('white-square.tif')
+    #os.remove('white-square.tif')
 
 
 def test_canny():
@@ -40,10 +32,10 @@ def test_canny():
 
     .. warning::
 
-        This seems to produce some artifacts. The fixture is a black
-        image with a white 11x11 rectangle. Thus you expect you get 44 (4*11)
-        pixels of edges. Instead it gets 50, when sigma is 1 and 40 when sigma
-        is 2. In both cases the shape is not correct.
+        This seems to produce some artifacts. You expect you get 44 (4*11)
+        pixels of edges. Instead it gets 46, when sigma is 1 and 40 when sigma
+        is 2. In both cases the shape is correct, but a few edge pixels are
+        missing or instroduced at a wrong positions.
 
     """
     img = io.imread('white-square.tif')
@@ -55,7 +47,7 @@ def test_canny():
     # this should be 44 check the resulting image with
     #result *= 255
     #io.imsave('result.tif', result)
-    assert_equal(result.sum(), 50)
+    assert_equal(result.sum(), 46)
 
 
 def test_prewitt():
