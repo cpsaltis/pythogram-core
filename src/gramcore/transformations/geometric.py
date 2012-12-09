@@ -1,6 +1,6 @@
 """Geometric transformations on numpy arrays.
 
-These assume that the transformed is actually an image.
+These assume that the transformed array is actually an image.
 
 """
 from skimage import transform

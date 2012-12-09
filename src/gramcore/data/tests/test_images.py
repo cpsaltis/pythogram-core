@@ -24,7 +24,7 @@ def setup():
 
 
 def teardown():
-    """Delete fixtures and test_save_* outputs"""
+    """Delete fixtures of test_save_* outputs"""
     os.remove('green-dot.tif')
     os.remove('green-dot.jpg')
     os.remove('green-dot.png')
