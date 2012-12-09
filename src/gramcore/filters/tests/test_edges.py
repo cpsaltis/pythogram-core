@@ -75,6 +75,7 @@ def test_prewitt():
     parameters = {'data': [img]}
 
     result = edges.prewitt(parameters)
+    result = result.astype('uint8')
 
     assert_equal(result.sum(), 72)
 
@@ -95,5 +96,6 @@ def test_sobel():
     parameters = {'data': [img]}
 
     result = edges.sobel(parameters)
+    result = result.astype('uint8')
 
     assert_equal(result.sum(), 76)
