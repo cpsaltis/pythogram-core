@@ -24,7 +24,7 @@ def setup():
 
 def teardown():
     """Delete fixture"""
-    #os.remove('white-square.tif')
+    os.remove('white-square.tif')
 
 
 def test_canny():
