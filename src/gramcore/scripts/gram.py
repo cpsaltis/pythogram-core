@@ -11,24 +11,27 @@ logger = logging.getLogger('gramcore')
 
 
 MAPPING = {
-    'data.images.fromarray': images.fromarray,
-    'data.images.load': images.load,
-    'data.images.save': images.save,
+    'images.fromarray': images.fromarray,
+    'images.load': images.load,
+    'images.save': images.save,
     # leaving this out for the moment since it isn't necessary to end users
-    #'data.images.syth_positions': data.images.synth_positions,
-    'data.images.synthetic': images.synthetic,
-    'data.images.tiled': images.tiled,
-    'data.arrays.asarray': arrays.asarray,
-    'data.arrays.get_shape': arrays.get_shape,
-    'data.arrays.gaussian_noise': arrays.gaussian_noise,
-    'data.arrays.load': arrays.load,
-    'data.arrays.save': arrays.save,
-    'data.arrays.dtm': arrays.dtm,
-    'data.arrays.dsm': arrays.dsm,
+    #'images.syth_positions': images.synth_positions,
+    'images.synthetic': images.synthetic,
+    'images.tiled': images.tiled,
+    'arrays.asarray': arrays.asarray,
+    'arrays.get_shape': arrays.get_shape,
+    'arrays.gaussian_noise': arrays.gaussian_noise,
+    'arrays.load': arrays.load,
+    'arrays.save': arrays.save,
+    'arrays.split': arrays.split,
+    'arrays.dtm': arrays.dtm,
+    'arrays.dsm': arrays.dsm,
     'arithmetic.add': arithmetic.add,
     'arithmetic.diff': arithmetic.diff,
     'arithmetic.divide': arithmetic.divide,
     'arithmetic.ndvi': arithmetic.ndvi,
+    'geometric.resize': geometric.resize,
+    'geometric.rotate': geometric.rotate,
 }
 
 
