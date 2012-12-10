@@ -34,7 +34,7 @@ def test_mean():
 
     parameters = {'data': [arr], 'size': [3, 3]}
 
-    result = statistics.average(parameters)
+    result = statistics.mean(parameters)
 
     assert_equal(result[2, 2], 2.0)
     assert_equal(result[1, 2], 1.0)
