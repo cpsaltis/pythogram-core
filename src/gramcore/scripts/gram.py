@@ -3,7 +3,7 @@ import sys
 import json
 import logging
 from gramcore.data import images, arrays
-from gramcore.filters import edges, statistics
+from gramcore.filters import edges, statistics, morphology, thresholds
 from gramcore.transformations import arithmetic, geometric
 
 
@@ -30,11 +30,17 @@ MAPPING = {
     'edges.canny': edges.canny,
     'edges.prewitt': edges.prewitt,
     'edges.sobel': edges.sobel,
+    'morphology.closing': morphology.closing,
+    'morphology.erosion': morphology.erosion,
+    'morphology.dilation': morphology.dilation,
+    'morphology.opening': morphology.opening,
     'statistics.maximum': statistics.maximum,
     'statistics.average': statistics.mean,
     'statistics.median': statistics.median,
     'statistics.minimum': statistics.minimum,
     'statistics.stddev': statistics.stddev,
+    'thresholds.binary': thresholds.binary,
+    'thresholds.otsu': thresholds.otsu,
     'arithmetic.add': arithmetic.add,
     'arithmetic.diff': arithmetic.diff,
     'arithmetic.divide': arithmetic.divide,
