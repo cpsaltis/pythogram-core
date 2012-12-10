@@ -22,7 +22,7 @@ def canny(parameters):
                                 defaults to 1.0
     :type parameters['sigma']: float
 
-    :return: numpy.array, with dtype('uint8') and 0 or 1 values
+    :return: numpy.array, with dtype('uint8') containing 0 or 1 values
 
     """
     img = parameters['data'][0]

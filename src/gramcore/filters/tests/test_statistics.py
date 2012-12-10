@@ -1,5 +1,4 @@
 """Tests for module gramcore.filters.statistics"""
-import os
 import numpy
 
 from nose.tools import assert_equal

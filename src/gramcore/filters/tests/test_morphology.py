@@ -1,5 +1,4 @@
 """Tests for module gramcore.filters.morphology"""
-import os
 import numpy
 
 from nose.tools import assert_equal
