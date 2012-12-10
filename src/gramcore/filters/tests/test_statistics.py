@@ -4,8 +4,6 @@ import numpy
 
 from nose.tools import assert_equal
 
-from skimage import io
-
 from gramcore.filters import statistics
 
 
@@ -29,7 +27,7 @@ def test_maximum():
 def test_mean():
     """Create a fixture and check the local average"""
     arr = numpy.zeros((5, 5))
-    # a 5x5 patch
+    # a 3x3 patch
     arr[1:2, 1:4] = 1.0
     arr[2:3, 1:4] = 2.0
     arr[3:4, 1:4] = 3.0
@@ -48,7 +46,7 @@ def test_mean():
 def test_median():
     """Create a fixture and check the local median"""
     arr = numpy.zeros((5, 5))
-    # a 5x5 patch
+    # a 3x3 patch
     arr[1:2, 1:4] = 1
     arr[2:3, 1:4] = 2
     arr[3:4, 1:4] = 3
@@ -63,6 +61,7 @@ def test_median():
 def test_minimum():
     """Create a fixture and check the local minimum"""
     arr = numpy.zeros((11, 11))
+    # a 5x5 patch
     arr[4:9, 4:9] = 255
     arr[6, 6] = 0
 
@@ -76,7 +75,7 @@ def test_minimum():
 def test_stddev():
     """Create a fixture and check the local standard deviation"""
     arr = numpy.zeros((5, 5))
-    # a 5x5 patch
+    # a 3x3 patch
     arr[1:4, 1:4] = 1
 
     parameters = {'data': [arr], 'size': [3, 3]}
