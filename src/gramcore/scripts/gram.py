@@ -3,6 +3,7 @@ import sys
 import json
 import logging
 from gramcore.data import images, arrays
+from gramcore.features import descriptors, points
 from gramcore.filters import edges, statistics, morphology, thresholds
 from gramcore.transformations import arithmetic, geometric
 
@@ -27,6 +28,8 @@ MAPPING = {
     'arrays.split': arrays.split,
     'arrays.dtm': arrays.dtm,
     'arrays.dsm': arrays.dsm,
+    'descriptors.hog': descriptors.hog,
+    'points.harris': points.harris,
     'edges.canny': edges.canny,
     'edges.prewitt': edges.prewitt,
     'edges.sobel': edges.sobel,
