@@ -19,6 +19,22 @@ Here you can find detailed documentation on all available modules.
    :undoc-members:
 
 
+:mod:`gramcore.features.descriptors`
+------------------------------------------
+
+.. automodule:: gramcore.features.descriptors
+   :members:
+   :undoc-members:
+
+
+:mod:`gramcore.features.points`
+------------------------------------------
+
+.. automodule:: gramcore.features.points
+   :members:
+   :undoc-members:
+
+
 :mod:`gramcore.filters.edges`
 ------------------------------------------
 

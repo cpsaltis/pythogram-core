@@ -19,6 +19,22 @@ Here you can find detailed documentation on all testing modules.
    :undoc-members:
 
 
+:mod:`gramcore.features.tests.test_descriptors`
+------------------------------------------------------
+
+.. automodule:: gramcore.features.tests.test_descriptors
+   :members:
+   :undoc-members:
+
+
+:mod:`gramcore.features.tests.test_points`
+------------------------------------------------------
+
+.. automodule:: gramcore.features.tests.test_points
+   :members:
+   :undoc-members:
+
+
 :mod:`gramcore.filters.tests.test_edges`
 ------------------------------------------------------
 
