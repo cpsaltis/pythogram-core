@@ -29,7 +29,9 @@ def hog(parameters):
 
     :return: numpy.array, it contains 1s where points were found, otherwise 0
 
-    TODO: investigate the algorithm and return values per pixel
+    (TODO: investigate the algorithm and return values, how do
+    pixels_per_cell and cells_per_block relate, how do you assign the returned
+    values to image pixels, fix the test too)
 
     """
     data = parameters['data'][0]
