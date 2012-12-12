@@ -13,8 +13,10 @@ def canny(parameters):
     functions, the return value is cast to uint8, thus containing 0 or 1
     values.
 
-    During testing there have been some issues with the results. Check the
-    corresponding test function for details.
+    ..warning::
+
+        During testing there have been some issues with the results. Check the
+        corresponding test function for details.
 
     :param parameters['data'][0]: input image
     :type parameters['data'][0]: numpy.array
@@ -44,10 +46,12 @@ def prewitt(parameters):
     During testing there have been some issues with the results. Check the
     corresponding test function for details.
 
+    (TODO improve this doc string as per sobel below)
+
     :param parameters['data'][0]: input image
     :type parameters['data'][0]: numpy.array
 
-    :return: numpy.array with dtype('float64') and values in [0, 1] range
+    :return: numpy.array with dtype('float64')
 
     """
     img = parameters['data'][0]
@@ -62,16 +66,37 @@ def sobel(parameters):
 
     This wraps `skimage.filter.sobel`. The `mask` option is not supported.
 
-    The wrapped function returns an array with dtype('float64') and values in
-    [0, 1]. Keep this in mind before saving the object as an image file.
+    This produces correct shape though it expands it by one row of pixels
+    on every edge. e.g. ideally if the initial image is::
 
-    During testing there have been some issues with the results. Check the
-    corresponding test function for details.
+        0 0 0 0 0 0 0
+        0 1 1 1 1 1 0
+        0 1 1 1 1 1 0
+        0 1 1 1 1 1 0
+        0 1 1 1 1 1 0
+        0 1 1 1 1 1 0
+        0 0 0 0 0 0 0
+
+    then after sobel it will become::
+
+        1 1 1 1 1 1 1
+        1 1 1 1 1 1 1
+        1 1 0 0 0 1 1
+        1 1 0 0 0 1 1
+        1 1 0 0 0 1 1
+        1 1 1 1 1 1 1
+        1 1 1 1 1 1 1
+
+    This is to be expected by the way sobel works.
+
+    The wrapped function returns an array with dtype('float64'). If the result
+    is cast to another dtype it will not be this accurate. Keep this in mind
+    before saving the object as an image file with dtype e.g. uint8.
 
     :param parameters['data'][0]: input image
     :type parameters['data'][0]: numpy.array
 
-    :return: numpy.array with dtype('uint8') and values in [0, 1] range
+    :return: numpy.array with dtype('float64')
 
     """
     img = parameters['data'][0]

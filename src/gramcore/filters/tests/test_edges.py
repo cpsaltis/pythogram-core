@@ -53,12 +53,8 @@ def test_canny():
 def test_prewitt():
     """Apply prewitt to grey image and check return values
 
-    .. note::
-
-        This produces correct shape though it shrinks it by 2 pixels, there
-        are no edge pixels on the corners and each edge has a width of 2
-        pixels. Based on the original rectangle size, which is 11x11, and the
-        above issues it returns 4*9*2 = 72 edge pixels.
+    Casting the result to 'uint8' changes the actual result. For now leave
+    this as is (TODO improve this test, without casting to uint8).
 
     """
     img = io.imread('white-square.tif')
@@ -74,12 +70,8 @@ def test_prewitt():
 def test_sobel():
     """Apply sobel to grey image and check return values
 
-    .. note::
-
-        This produces correct shape though it shrinks it by 2 pixels and each
-        edge has a width of 2 pixels. Based on the original rectangle size,
-        which is 11x11, and the above issues it returns 4*9*2 + 4 = 76 edge
-        pixels.
+    Casting the result to 'uint8' changes the actual result. For now leave
+    this as is (TODO improve this test, without casting to uint8).
 
     """
     img = io.imread('white-square.tif')
