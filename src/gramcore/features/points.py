@@ -23,7 +23,12 @@ def harris(parameters):
         >>> points = feature.harris(data, min_distance=5)
         >>> data[points] = 1
 
-    Instead a for loop is used.
+    so a for loop is used.
+
+    .. note::
+
+        The coordinates returned are not directly on the corner, but a pixel
+        inside the object (TODO: is this expected?).
 
     :param parameters['data'][0]: input array
     :type parameters['data'][0]: numpy.array
@@ -38,7 +43,7 @@ def harris(parameters):
     data = parameters['data'][0]
     min_distance = parameters.get('min_distance', 10)
 
-    points = feature.harris(data, min_distance=pmin_distance)
+    points = feature.harris(data, min_distance=min_distance)
 
     result = numpy.zeros((data.shape[0], data.shape[1]), dtype='uint8')
 
