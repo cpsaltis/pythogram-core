@@ -9,6 +9,9 @@ from gramcore.features import descriptors
 def test_hog_size():
     """Create a fixture and check hog result size
 
+    There are already enough tests in skimage for this, just adding so to
+    document how many values are returned and why.
+
     Creates a square array and inputs it to hog. For simplicity the
     blocks and the cells are square. The calculated orientations are set to 9.
     Based on these the result should include a number of values equal to::
