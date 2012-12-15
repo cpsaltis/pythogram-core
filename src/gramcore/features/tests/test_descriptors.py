@@ -6,29 +6,36 @@ from nose.tools import assert_equal
 from gramcore.features import descriptors
 
 
-def test_hog():
-    """Create a fixture and check hog result
+def test_hog_size():
+    """Create a fixture and check hog result size
+
+    Creates a square array and inputs it to hog. For simplicity the
+    blocks and the cells are square. The calculated orientations are set to 9.
+    Based on these the result should include a number of values equal to::
+
+        block_possitions^2 * cells_per_block^2 * orientations
 
     """
-    pixels_per_cell = (9, 9)
-    cells_per_block = (4, 4)
-    blocks = (2, 2)
+    pixels_per_cell = 9
+    cells_per_block = 8
+    orientations = 9
 
-    arr_dim = pixels_per_cell[0] * cells_per_block[0] * blocks[0]
+    # double the size so to generate some blocks and initialize the array
+    arr_dim =  2 * pixels_per_cell * cells_per_block
     arr = numpy.zeros((arr_dim, arr_dim))
 
-    # put some values in the first cell
-    cell = numpy.arange(81)
-    cell.shape = (9, 9)
-    arr[0:9, 0:9] = cell
-
     parameters = {'data': [arr],
-                  'orientations': 8,
-                  'pixels_per_cell': pixels_per_cell,
-                  'cells_per_block': cells_per_block}
+                  'orientations': orientations,
+                  'pixels_per_cell': [pixels_per_cell, pixels_per_cell],
+                  'cells_per_block': [cells_per_block, cells_per_block]}
 
     results = descriptors.hog(parameters)
 
-    # fix this after investigating how it works
-    assert False
+    # calculate how many blocks fit in the array, basically how many
+    # sliding window positions are there
+    block_positions = (arr_dim / pixels_per_cell) - cells_per_block + 1
+
+    assert_equal(results.shape[0], block_positions**2 *\
+                                   cells_per_block**2 *\
+                                   orientations)
 
