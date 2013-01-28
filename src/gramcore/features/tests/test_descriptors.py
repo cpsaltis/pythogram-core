@@ -18,6 +18,8 @@ def test_hog_size():
 
         block_possitions^2 * cells_per_block^2 * orientations
 
+    HOG calculations take place in row major order.
+
     """
     pixels_per_cell = 9
     cells_per_block = 8
